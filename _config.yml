@@ -8,10 +8,10 @@ title: 码志
 subtitle: "公众号：闷骚的程序员"
 description: "马壮的个人博客，公众号：闷骚的程序员"
 keywords: 码志, Zhuang Ma, mzlogin, mazhuang, 闷骚的程序员
-timezone: Asia/Shanghai
+timezone: Asia/Taiwan
 encoding: "utf-8"
 # 页面左下角显示的年份
-since: 2015
+since: 2022
 # 源码仓库，请替换成自己的
 repository: mzlogin/mzlogin.github.io
 # 对 css 和 js 资源的 cdn 加速配置
@@ -54,12 +54,12 @@ highlight_theme: github
 # ---------------- #
 #      Author      #
 # ---------------- #
-author: Zhuang Ma
-organization: 
-organization_url: 
-github_username: mzlogin
-location: Wuhan, China
-email: chumpma@gmail.com
+author: Jimmy Liu
+organization:
+organization_url:
+github_username: kuopingl
+location: Taiwan
+email: kuopingl+1@gmail.com
 
 # ---------------- #
 #    Navigation    #
@@ -133,7 +133,7 @@ comments_provider: beaudar
 # !!!Important!!! Please modify infos below to yours
 # disqus 配置参考：https://disqus.com
 disqus:
-    username: 
+    username:
 # gitment 配置参考：https://imsun.net/posts/gitment-introduction/
 gitment:
     owner: mzlogin
@@ -172,7 +172,7 @@ google:
     analytics_id: UA-80669434-1
     adsense:
         footer: true
-        sidebar: true 
-        sidebar-detail: true 
+        sidebar: true
+        sidebar-detail: true
         content_header: false
         content_footer: false
