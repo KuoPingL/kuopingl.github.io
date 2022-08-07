@@ -1,24 +1,20 @@
 ---
 layout: page
 title: About
-description: 打码改变世界
-keywords: Zhuang Ma, 马壮
+description:
+keywords: Jimmy Liu
 comments: true
-menu: 关于
+menu: About
 permalink: /about/
 ---
 
-我是马壮，码而生，码而立。
+ Coding, Math, Science are all the thing I enjoy
 
-仰慕「优雅编码的艺术」。
-
-坚信熟能生巧，努力改变人生。
-
-## 联系
+## Social Media
 
 <ul>
 {% for website in site.data.social %}
-<li>{{website.sitename }}：<a href="{{ website.url }}" target="_blank">@{{ website.name }}</a></li>
+<li>{{website.sitename }}：<a href="{{ website.url }}" target="_blank">{{ website.name }}</a></li>
 {% endfor %}
 {% if site.url contains 'mazhuang.org' %}
 <li>

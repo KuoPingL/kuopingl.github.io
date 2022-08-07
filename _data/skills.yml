@@ -1,19 +1,12 @@
-- name: Software Engineer Keywords
+- name: Programming Languages
   keywords:
       - Java
-      - C++
-      - Python
-      - Design Patterns
+      - Kotlin
+      - Swift
+      - Dart
 
-- name: Mobile Developer Keywords
+- name: Mobile Developer
   keywords:
       - Android
-      - Reverse Engineering
-
-- name: Windows Developer Keywords
-  keywords:
-      - Win32 SDK
-      - DuiLib
-      - WTL
-      - COM
-      - WinDbg
+      - iOS
+      # - Flutter
