@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Open Source Projects
-keywords: 开源,open-source,GitHub,开源项目
-description: 开源改变世界。
+keywords: 開源,open-source,GitHub,開源項目
+description: 一起開源吧
 permalink: /open-source/
 ---
 
