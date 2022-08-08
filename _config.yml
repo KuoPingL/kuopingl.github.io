@@ -5,14 +5,14 @@ baseurl:
 url: https://kuopingl.github.io/
 date_format: "ordinal"
 title: Jimmy's Hut
-subtitle: "Please enjoy your stay"
+subtitle: "Sleep-Code-Eat-Repeat"
 keywords: Coder, Jimmy Liu
 timezone: Asia/Taiwan
 encoding: "utf-8"
 # 页面左下角显示的年份
 since: 2022
 # 源码仓库，请替换成自己的
-repository: https://github.com/KuoPingL
+repository: kuopingl/kuopingl.github.io
 # 对 css 和 js 资源的 cdn 加速配置
 cdn:
     jsdelivr:
