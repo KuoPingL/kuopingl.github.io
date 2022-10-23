@@ -149,7 +149,7 @@ $$\sum_{i = 2}^{n}(m_i - 1) = \sum_{i = 2}^{n}(i - 1) = \sum_{i = 1}^{n - 1}(i -
 
 As a result :
 
-$$\begin{aligned}T(n) = &c_1+c_3n + c_4(n-1) + c_5(n-1)+ \\&c_6(\frac{(n+1)(n)}{2} -1)+c_7\frac{(n)(n-1)}{2}+\\&c_8\frac{(n)(n-1)}{2} + c_{10}(n-1)\end{aligned}$$
+\\(\begin{aligned}T(n) = &c_1+c_3n + c_4(n-1) + c_5(n-1)+ \\&c_6(\frac{(n+1)(n)}{2} -1)+c_7\frac{(n)(n-1)}{2}+\\&c_8\frac{(n)(n-1)}{2} + c_{10}(n-1)\end{aligned}\\)
 
 $$\begin{aligned}T(n) &= n^2(\frac{c_6}{2} + \frac{c_7}{2} + \frac{c_8}{2}) \\&+ n(c_3+c_4+\frac{c_6}{2} - \frac{c_7}{2} - \frac{c_8}{2} + c_{10})   \\&+( c_1 - c_4 - c_5 - c_6 - c_{10})\end{aligned}$$
 
