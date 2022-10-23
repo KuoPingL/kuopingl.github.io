@@ -7,23 +7,23 @@ categories: [algorithm, beginner]
 
 ### Background
 ><br>Whenever we are evaluating an algorithm, we always compare their **complexity** or the **Big O**.
-><br>
+><br><br/>
 
 But, do you know what is a Big O ? and what it means ?
 
 In this article, we are going to discuss about that.
 
 ### Complexity
-><br> **Complexity** is defined as the **amount of computational resources** (time and memory) that is required to run the algorithm.
+**Complexity** is defined as the **amount of computational resources** (time and memory) that is required to run the algorithm.
 > <br>In another word, it defines the **efficiency of the algorithm**.
-><br>
+><br><br/>
 
 We can examine **computational complexity** through  **Time** and **Space Complexity**.
 
 ><br>**Time Complexity** is the amount of computational time it takes for the algorithm to complete.
 >
 >**Space Complexity** is the amount of memory storage it takes to run the algorithm.
-><br>
+><br><br/>
 
 but most of the time, we will see algorithms being compared using **time complexity**.
 
@@ -33,7 +33,7 @@ but most of the time, we will see algorithms being compared using **time complex
 
 ### Asymptotic Analysis
 ><br>In mathematical analysis, **asymptotic analysis**, also known as <b>*asymptotics*</b>, is a method of describing **limiting behavior**. ---[wiki](https://en.wikipedia.org/wiki/Asymptotic_analysis)
-><br>
+><br><br/>
 
 The popular **notations** in asymptotic analysis are :
 - **Big O** notation ( **O (expression)** )
@@ -41,15 +41,15 @@ The popular **notations** in asymptotic analysis are :
 - **Theta** notation ( **Θ (expression)** )
 
 ><br>**Big-O** is used to describe the **worst case** complexity, which explains the maximum amount of time an algorithm requires considering all input values [ [geeksforgeeks](https://www.geeksforgeeks.org/analysis-of-algorithms-set-2-asymptotic-analysis/) ].
-><br>
+><br><br/>
 
 ><br>**Omega** describes the **best case** senario.
-><br>
+><br><br/>
 
 and
 
 ><br>**Theta** defines the **average case**.
-><br>
+><br><br/>
 
 **<u>Now that we know the definition, how do we find the limit ?</u>**
 
@@ -62,6 +62,7 @@ Before examining the psudocode, there are something that you need to know.
 Every line of code that gets proceeded require certain amount of time, usually we would assume this is a constant time or **cost** ( **c <sub>i</sub>** ).
 
 To find the total cost of a certain line of code, we simply need to find the number of time the code will run, **n**, and multiply it by the **cost** :
+
 $$\begin{aligned}
 TotalTime = n\times{c_i}
 \end{aligned}
@@ -70,18 +71,18 @@ $$
 where **i** is the line of the code
 
 Now, let's take a look at the psudocode :
-```CPP
-1 int n = nums.size();
-2
-3 for i in 2 to n { // array[1:n]
-4  int target = nums[i];
-5  int j = i - 1;
-6  while (j > 0 && nums[j] > t) {
-7    nums[j + 1] = nums[j];
-8    j--;
-9  }
-10 nums[j + 1] = target;
-11}
+```cpp
+int n = nums.size();
+
+for i in 2 to n { // array[1:n]
+    int target = nums[i];
+    int j = i - 1;
+    while (j > 0 && nums[j] > t) {
+        nums[j + 1] = nums[j];
+        j--;
+    }
+    nums[j + 1] = target;
+}
 ```
 
 Here is the cost and number of time each line will run :
@@ -89,7 +90,7 @@ Here is the cost and number of time each line will run :
 |line #|code|cost|# of run|
 |:--:|--|:--:|:--:|
 |1   | int n = nums.size( );   | c<sub>1</sub> | 1  |
-|3   | for i in 1 to n  |  c<sub>3</sub>  |  n |
+|3   | for i in 2 to n  |  c<sub>3</sub>  |  n |
 |4   | int target = nums[ i ];  | c<sub>4</sub>  | n - 1  |
 |5   |  int j = i - 1; | c<sub>5</sub>  |  n - 1 |
 |6   |  while ( j > 0 && nums[ j ] > t) | c<sub>6</sub>   |  $$\sum_{i = 2}^{n}m_i$$ |
@@ -98,12 +99,12 @@ Here is the cost and number of time each line will run :
 |10   | nums[ j + 1 ] = target;  | c<sub>10</sub>   |  n - 1 |
 
 ><br>since the inner loop depends on the **i** value, therefore, we uses **m <sub>i</sub>** to represent the number of time the code will run.
-><br>
+<br><br/>
 
 Here is a [great tutorial](https://www.youtube.com/watch?v=tmKUHLs21PU) that explains why the number of runs are the way they are.
 
 ><br>If you are curious on why are the loops run **n** times while their contents run **n - 1** times, it's simply because loops need **an extra step** to exit the loop.
-><br>
+<br><br/>
 
 So if we sums up the total time it takes to run a **Insertion Sort**, we get :
 
@@ -113,7 +114,7 @@ Now with the formula prepared, we can examine its performance in **best-case**, 
 
 #### Best Case
 ><br>The best case scenario is obviously when the array is already sorted.
-><br>
+<br><br/>
 
 In this case, the inner loop will never enter thus $m_i = 1$ :
 
@@ -127,7 +128,7 @@ Hence, in the best scenario, the **time complexity** is **Ω ( n )**, aka **line
 #### Worst Case
 ><br>In the worst case scenario, the array is in the **reversed order**.
 >ie [ 6, 5, 4, 3, 2, 1 ] if we wish to get a accending order.
-><br>
+<br><br/>
 
 In this case, all values need to be shifted by $i$ times :
 
@@ -161,11 +162,11 @@ As a result, in the **worst-case** scenario, **Insertion Sort** has a Big-O of *
 
 
 ><br>**Worst case** scenario is usually what we focused because it gives us an **upper-bound** to the runtime for *any* inputs, which is essential for real-time computation [ [ref](https://github.com/Mcdonoughd/CS2223/blob/master/Books/Algorithhms%204th%20Edition%20by%20Robert%20Sedgewick,%20Kevin%20Wayne.pdf) ].
-><br>
+><br><br/>
 
 #### Average Case
 ><br>**Average case** analysis is *seldom* discussed because usually it is *as bad as* the **worst case** scenario.
-><br>
+<br><br/>
 
 This is true in the case of **Insertion Sort**.
 On average, half the of values are sorted, thus :
