@@ -137,17 +137,21 @@ In this case, all values need to be shifted by $i$ times :
 And so forth.
 
 Hence, $m_i = i$ [ [ref](https://github.com/Mcdonoughd/CS2223/blob/master/Books/Algorithhms%204th%20Edition%20by%20Robert%20Sedgewick,%20Kevin%20Wayne.pdf) ].:
+
 $$\sum_{i = 2}^{n}m_i = \sum_{i = 2}^{n}i = \sum_{i = 1}^{n}i - 1\\\sum_{i = 1}^{n}i - 1 = \frac{(n + 1)(n)}{2} - 1 $$
 
 Similarly [ [ref](https://github.com/Mcdonoughd/CS2223/blob/master/Books/Algorithhms%204th%20Edition%20by%20Robert%20Sedgewick,%20Kevin%20Wayne.pdf) ].:
+
 $$\sum_{i = 2}^{n}(m_i - 1) = \sum_{i = 2}^{n}(i - 1) = \sum_{i = 1}^{n - 1}(i - 1)\\\sum_{i = 1}^{n - 1}(i - 1) = \frac{((n - 1 + 1)(n - 1))}{2} = \frac{(n)(n - 1)}{2}$$
 
 As a result :
+
 $$T(n) = c_1+c_3n + c_4(n-1) + c_5(n-1)\\+ c_6(\frac{(n+1)(n)}{2} -1)+c_7\frac{(n)(n-1)}{2}+\\c_8\frac{(n)(n-1)}{2} + c_{10}(n-1)$$
 
 $$T(n) = n^2(\frac{c_6}{2} + \frac{c_7}{2} + \frac{c_8}{2}) \\+ n(c_3+c_4+\frac{c_6}{2} - \frac{c_7}{2} - \frac{c_8}{2} + c_{10})   \\+( c_1 - c_4 - c_5 - c_6 - c_{10})$$
 
 From this, we can express the worst case runtime as a **quadratic fucntion**:
+
 $$an^2+bn+c$$
 
 As a result, in the **worst-case** scenario, **Insertion Sort** has a Big-O of **O ( n<sup>2</sup> )**.
@@ -162,6 +166,7 @@ As a result, in the **worst-case** scenario, **Insertion Sort** has a Big-O of *
 
 This is true in the case of **Insertion Sort**.
 On average, half the of values are sorted, thus :
+
 $$m_i = \frac{i}{2}$$
 
 which will also give a time complexity of **Θ ( n<sup>2</sup> )**.
