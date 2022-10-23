@@ -90,7 +90,7 @@ Here is the cost and number of time each line will run :
 |line #|code|cost|# of run|
 |:--:|--|:--:|:--:|
 |1   | int n = nums.size( );   | c<sub>1</sub> | 1  |
-|3   | for i in 1 to n  |  c<sub>3</sub>  |  n |
+|3   | for i in 2 to n  |  c<sub>3</sub>  |  n |
 |4   | int target = nums[ i ];  | c<sub>4</sub>  | n - 1  |
 |5   |  int j = i - 1; | c<sub>5</sub>  |  n - 1 |
 |6   |  while ( j > 0 && nums[ j ] > t) | c<sub>6</sub>   |  $$\sum_{i = 2}^{n}m_i$$ |
