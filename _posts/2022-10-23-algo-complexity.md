@@ -92,9 +92,9 @@ Here is the cost and number of time each line will run :
 |3   | for i in 1 to n  |  c<sub>3</sub>  |  n |
 |4   | int target = nums[ i ];  | c<sub>4</sub>  | n - 1  |
 |5   |  int j = i - 1; | c<sub>5</sub>  |  n - 1 |
-|6   |  while ( j > 0 && nums[ j ] > t) | c<sub>6</sub>   |  $\sum_{i = 2}^{n}m_i$ |
-|7   |  nums [ j + 1 ] = nums[ j ]; | c<sub>7</sub>  | $\sum_{i = 2}^{n}(m_i - 1)$  |
-|8   | j--;  | c<sub>8</sub>  | $\sum_{i = 2}^{n}(m_i - 1)$  |
+|6   |  while ( j > 0 && nums[ j ] > t) | c<sub>6</sub>   |  $$\sum_{i = 2}^{n}m_i$$ |
+|7   |  nums [ j + 1 ] = nums[ j ]; | c<sub>7</sub>  | $$\sum_{i = 2}^{n}(m_i - 1)$$  |
+|8   | j--;  | c<sub>8</sub>  | $$\sum_{i = 2}^{n}(m_i - 1)$$  |
 |10   | nums[ j + 1 ] = target;  | c<sub>10</sub>   |  n - 1 |
 
 ><br>since the inner loop depends on the **i** value, therefore, we uses **m <sub>i</sub>** to represent the number of time the code will run.
@@ -107,7 +107,7 @@ Here is a [great tutorial](https://www.youtube.com/watch?v=tmKUHLs21PU) that exp
 
 So if we sums up the total time it takes to run a **Insertion Sort**, we get :
 
-$$T(n) = c_1 + c_3n + c_4(n - 1)+c_5(n-1)+c_6\sum_{i = 2}^{n}m_i+c_7\sum_{i = 2}^{n}(m_i - 1)+c_8\sum_{i = 2}^{n}(m_i - 1)+c_{10}(n - 1)$$
+$$\begin{aligned}T(n) = &c_1 + c_3n + c_4(n - 1)+c_5(n-1)+\\&c_6\sum_{i = 2}^{n}m_i+c_7\sum_{i = 2}^{n}(m_i - 1)+\\&c_8\sum_{i = 2}^{n}(m_i - 1)+c_{10}(n - 1)\end{aligned}$$
 
 Now with the formula prepared, we can examine its performance in **best-case**, **average-case** and **worst-case** scenario.
 
@@ -115,7 +115,7 @@ Now with the formula prepared, we can examine its performance in **best-case**, 
 ><br>The best case scenario is obviously when the array is already sorted.
 ><br>
 
-In this case, the inner loop will never enter thus $ m_i = 1 $ :
+In this case, the inner loop will never enter thus $m_i = 1$ :
 
 $$\begin{aligned}T(n)&=c_1+c_3n + c_4(n-1) + c_5(n-1)\\&+ c_6(n-1)+c_{10}(n-1)\end{aligned}$$
 
@@ -129,7 +129,7 @@ Hence, in the best scenario, the **time complexity** is **Ω ( n )**, aka **line
 >ie [ 6, 5, 4, 3, 2, 1 ] if we wish to get a accending order.
 ><br>
 
-In this case, all values need to be shifted by $ i $ times :
+In this case, all values need to be shifted by $i$ times :
 
 |array|actions|
 |:--|:--|
@@ -151,7 +151,7 @@ As a result :
 
 $$\begin{aligned}T(n) = &c_1+c_3n + c_4(n-1) + c_5(n-1)+ \\&c_6(\frac{(n+1)(n)}{2} -1)+c_7\frac{(n)(n-1)}{2}+\\&c_8\frac{(n)(n-1)}{2} + c_{10}(n-1)\end{aligned}$$
 
-$$\begin{aligned}T(n) &= n^2(\frac{c_6}{2} + \frac{c_7}{2} + \frac{c_8}{2}) \\&+ n(c_3+c_4+\frac{c_6}{2} - \frac{c_7}{2} - \frac{c_8}{2} + c_{10})   \\&+( c_1 - c_4 - c_5 - c_6 - c_{10})\end{aligned}$$
+$$\begin{aligned}T(n) = &n^2(\frac{c_6}{2} + \frac{c_7}{2} + \frac{c_8}{2}) +\\& n(c_3+c_4+\frac{c_6}{2} - \frac{c_7}{2} - \frac{c_8}{2} + c_{10})+\\&( c_1 - c_4 - c_5 - c_6 - c_{10})\end{aligned}$$
 
 From this, we can express the worst case runtime as a **quadratic fucntion**:
 
