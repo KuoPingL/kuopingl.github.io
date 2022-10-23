@@ -27,7 +27,7 @@ We can examine **computational complexity** through  **Time** and **Space Comple
 
 but most of the time, we will see algorithms being compared using **time complexity**.
 
-<u>**So how can we describe complexities ? Or how can we describe the algorithm's efficiency ?**</u>
+**<u>So how can we describe complexities ? Or how can we describe the algorithm's efficiency ?</u>**
 <br>This is where **Asymptotic Analysis** comes in.
 
 
@@ -106,7 +106,8 @@ Here is a [great tutorial](https://www.youtube.com/watch?v=tmKUHLs21PU) that exp
 ><br>
 
 So if we sums up the total time it takes to run a **Insertion Sort**, we get :
-$$T(n) = c_1 + c_3n + c_4(n - 1)+c_5(n-1)+c_6\sum_{i = 2}^{n}m_i\\+c_7\sum_{i = 2}^{n}(m_i - 1)+c_8\sum_{i = 2}^{n}(m_i - 1)+c_{10}(n - 1)$$
+
+$$T(n) = c_1 + c_3n + c_4(n - 1)+c_5(n-1)+c_6\sum_{i = 2}^{n}m_i+c_7\sum_{i = 2}^{n}(m_i - 1)+c_8\sum_{i = 2}^{n}(m_i - 1)+c_{10}(n - 1)$$
 
 Now with the formula prepared, we can examine its performance in **best-case**, **average-case** and **worst-case** scenario.
 
@@ -114,8 +115,10 @@ Now with the formula prepared, we can examine its performance in **best-case**, 
 ><br>The best case scenario is obviously when the array is already sorted.
 ><br>
 
-In this case, the inner loop will never enter thus $m_i = 1$ :
+In this case, the inner loop will never enter thus $ m_i = 1 $ :
+
 $$T(n)=c_1+c_3n + c_4(n-1) + c_5(n-1)\\+ c_6(n-1)+c_{10}(n-1)$$
+
 $$T(n)= (c_3+c_4+c_5+c_6+c_{10})n \\+ (c_1+c_3-c_4-c_5-c_6-c_{10})$$
 
 Hence, in the best scenario, the **time complexity** is **Ω ( n )**, aka **linear function of n** [ [ref](https://github.com/Mcdonoughd/CS2223/blob/master/Books/Algorithhms%204th%20Edition%20by%20Robert%20Sedgewick,%20Kevin%20Wayne.pdf) ].
@@ -126,7 +129,7 @@ Hence, in the best scenario, the **time complexity** is **Ω ( n )**, aka **line
 >ie [ 6, 5, 4, 3, 2, 1 ] if we wish to get a accending order.
 ><br>
 
-In this case, all values need to be shifted by $i$ times :
+In this case, all values need to be shifted by $ i $ times :
 
 |array|actions|
 |:--|:--|
@@ -146,7 +149,7 @@ $$\sum_{i = 2}^{n}(m_i - 1) = \sum_{i = 2}^{n}(i - 1) = \sum_{i = 1}^{n - 1}(i -
 
 As a result :
 
-$$T(n) = c_1+c_3n + c_4(n-1) + c_5(n-1)\\+ c_6(\frac{(n+1)(n)}{2} -1)+c_7\frac{(n)(n-1)}{2}+\\c_8\frac{(n)(n-1)}{2} + c_{10}(n-1)$$
+$$T(n) = c_1+c_3n + c_4(n-1) + c_5(n-1)+ c_6(\frac{(n+1)(n)}{2} -1)+c_7\frac{(n)(n-1)}{2}+c_8\frac{(n)(n-1)}{2} + c_{10}(n-1)$$
 
 $$T(n) = n^2(\frac{c_6}{2} + \frac{c_7}{2} + \frac{c_8}{2}) \\+ n(c_3+c_4+\frac{c_6}{2} - \frac{c_7}{2} - \frac{c_8}{2} + c_{10})   \\+( c_1 - c_4 - c_5 - c_6 - c_{10})$$
 
