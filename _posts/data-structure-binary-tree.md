@@ -65,11 +65,19 @@ A **Balanced binary tree**, aka **height-balanced binary tree**, is defined as a
   <center>
   <a href= "https://adrianmejia.com/self-balanced-binary-search-trees-with-avl-tree-data-structure-for-beginners/">
   <img src = "/images/posts/jekyll/data_structure/balanced_vs_non_balanced_tree.jpg" style="width:80%"/>
+  </a>
   <center>
   </figure>
 
 
+### Applications of binary trees
 
+<figure>
+<center>
+<img src = "/images/posts/jekyll/data_structure/morse-code-tree.svg" style="width:100%" alt="Morse Code Structure"/>
+<br/> Morse Code Structure [ <a href= "https://stackoverflow.com/questions/2130416/what-are-the-applications-of-binary-trees"> ref</a>  ]
+</center>
+</figure>
 
 
 
