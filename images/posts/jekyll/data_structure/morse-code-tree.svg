@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="836" height="362" viewBox="0 0 836 362" xml:space="preserve">
+	<style type="text/css">
+		circle, line, path{
+			fill: none;
+			stroke: #000;
+			stroke-width: 2.5;
+		}
+		circle{
+			stroke-width: 1.5;
+		}
+		text{
+			font-size: 28px;
+			font-family: "Bitstream Charter", Charter, serif;
+			text-anchor: middle;
+		}
+		.arrowhead{
+			fill: #000;
+			stroke-width: 3.2;
+		}
+		.big  { stroke-width: 3; font-size: 32px; }
+		.dot  { stroke-dasharray: 2.5, 7.5; }
+		.dash { stroke-dasharray: 7.5, 7.5; }
+		.thin { stroke-width: 1; }
+		.grey { stroke: #808080; }
+		.tiny { font-size: 20px; }
+	</style>
+	<circle r="18" cx="209.1975" cy="96.7551"/>
+	<circle r="18" cx="626.7500" cy="96.8076"/>
+	<path class="dot" d="M384.1785583,48.2296791l-157.529892,43.7463417"/>
+	<path class="dash" d="M451.8214417,48.2296791l157.5299377,43.7463417"/>
+	<circle r="18" cx="104.8225" cy="156.279"/>
+	<circle r="18" cx="313.5725" cy="156.279"/>
+	<circle r="18" cx="522.3225" cy="156.279"/>
+	<circle r="18" cx="731.0725" cy="156.279"/>
+	<circle r="18" cx="70.03075" cy="224.2428"/>
+	<circle r="18" cx="139.614" cy="224.2428"/>
+	<circle r="18" cx="278.7808" cy="224.2428"/>
+	<circle r="18" cx="348.364" cy="224.2428"/>
+	<circle r="18" cx="487.5308" cy="224.2428"/>
+	<circle r="18" cx="557.114" cy="224.2428"/>
+	<circle r="18" cx="696.2801" cy="224.2428"/>
+	<circle r="18" cx="765.864" cy="224.2428"/>
+	<circle r="18" cx="793.6975" cy="284.211" class="grey"/>
+	<circle r="18" cx="751.9475" cy="284.211" class="grey"/>
+	<circle r="18" cx="710.1975" cy="284.211"/>
+	<circle r="18" cx="668.4475" cy="284.211"/>
+	<circle r="18" cx="584.9475" cy="284.211"/>
+	<circle r="18" cx="543.1975" cy="284.211"/>
+	<circle r="18" cx="501.4475" cy="284.211"/>
+	<circle r="18" cx="459.6975" cy="284.211"/>
+	<circle r="18" cx="376.1975" cy="284.211"/>
+	<circle r="18" cx="334.4475" cy="284.211"/>
+	<circle r="18" cx="292.6975" cy="284.211" class="grey"/>
+	<circle r="18" cx="250.9475" cy="284.211"/>
+	<circle r="18" cx="167.4475" cy="284.211" class="grey"/>
+	<circle r="18" cx="125.6975" cy="284.211"/>
+	<circle r="18" cx="83.9475" cy="284.211"/>
+	<circle r="18" cx="42.1975" cy="284.211"/>
+	<circle r="10" cx="24.162" cy="344.255" class="thin"/>
+	<circle r="10" cx="47.35625" cy="344.255" class="thin"/>
+	<circle r="10" cx="70.55075" cy="344.255" class="thin grey"/>
+	<circle r="10" cx="93.74525" cy="344.255" class="thin"/>
+	<circle r="10" cx="116.93975" cy="344.255" class="thin grey"/>
+	<circle r="10" cx="140.134" cy="344.255" class="thin grey"/>
+	<circle r="10" cx="163.3285" cy="344.255" class="thin grey"/>
+	<circle r="10" cx="186.523" cy="344.255" class="thin"/>
+	<circle r="10" cx="232.912" cy="344.255" class="thin grey"/>
+	<circle r="10" cx="256.10625" cy="344.255" class="thin grey"/>
+	<circle r="10" cx="279.30075" cy="344.255" class="thin"/>
+	<circle r="10" cx="302.49525" cy="344.255" class="thin grey"/>
+	<circle r="10" cx="325.68975" cy="344.255" class="thin grey"/>
+	<circle r="10" cx="348.884" cy="344.255" class="thin grey"/>
+	<circle r="10" cx="372.0785" cy="344.255" class="thin grey"/>
+	<circle r="10" cx="395.273" cy="344.255" class="thin"/>
+	<circle r="10" cx="441.66175" cy="344.255" class="thin"/>
+	<circle r="10" cx="464.85625" cy="344.255" class="thin"/>
+	<circle r="10" cx="488.05075" cy="344.255" class="thin"/>
+	<circle r="10" cx="511.24525" cy="344.255" class="thin grey"/>
+	<circle r="10" cx="534.43975" cy="344.255" class="thin grey"/>
+	<circle r="10" cx="557.63425" cy="344.255" class="thin grey"/>
+	<circle r="10" cx="580.8285" cy="344.255" class="thin grey"/>
+	<circle r="10" cx="604.023" cy="344.255" class="thin grey"/>
+	<circle r="10" cx="650.412" cy="344.255" class="thin"/>
+	<circle r="10" cx="673.60625" cy="344.255" class="thin grey"/>
+	<circle r="10" cx="696.80075" cy="344.255" class="thin grey"/>
+	<circle r="10" cx="719.99525" cy="344.255" class="thin grey"/>
+	<circle r="10" cx="743.18975" cy="344.255" class="thin"/>
+	<circle r="10" cx="766.384" cy="344.255" class="thin grey"/>
+	<circle r="10" cx="789.5785" cy="344.255" class="thin"/>
+	<circle r="10" cx="812.773" cy="344.255" class="thin"/>
+	<path class="dot" d="M193.5657043,105.7522507l-73.0063782,41.6347122"/>
+	<path class="dash" d="M224.9343567,105.7522507l73.0063171,41.6347122"/>
+	<path class="dot" d="M611.0656738,105.7522507l-73.0063477,41.6347122"/>
+	<path class="dash" d="M642.4343262,105.7522507l73.0063477,41.6347122"/>
+	<path class="dash" d="M739.3528442,172.4042816l18.3359375,35.8184357"/>
+	<path class="dot" d="M722.8971558,172.4042816l-18.3359985,35.8184357"/>
+	<path class="dash" d="M530.6028442,172.4042816l18.3359375,35.8184357"/>
+	<path class="dot" d="M514.1471558,172.4042816l-18.335968,35.8184357"/>
+	<path class="dash" d="M321.8528442,172.4042816l18.335968,35.8184357"/>
+	<path class="dot" d="M305.3971558,172.4042816l-18.335968,35.8184357"/>
+	<path class="dash" d="M113.1028519,172.4042816l18.3359756,35.8184357"/>
+	<path class="dot" d="M96.6471481,172.4042816l-18.3359604,35.8184357"/>
+	<path class="dot" d="M62.4814339,240.674057l-12.629528,27.2108612"/>
+	<path class="dash" d="M74.1651917,241.8845062l5.7529526,24.7899933"/>
+	<path class="dot" d="M135.5848236,241.8845062l-5.7529449,24.7899933"/>
+	<path class="dash" d="M147.2685852,240.674057l12.6295471,27.2108612"/>
+	<path class="dot" d="M271.2314453,240.674057l-12.6295166,27.2108612"/>
+	<path class="dash" d="M282.9151917,241.8845062l5.7529297,24.7899628"/>
+	<path class="dot" d="M344.3348083,241.8845062l-5.7529602,24.7899933"/>
+	<path class="dash" d="M356.0185852,240.674057l12.6295166,27.2108612"/>
+	<path class="dot" d="M479.9814148,240.674057l-12.6295166,27.2108612"/>
+	<path class="dash" d="M491.6651917,241.8845062l5.7529297,24.7899628"/>
+	<path class="dot" d="M553.0847778,241.8845062l-5.7529297,24.7899628"/>
+	<path class="dash" d="M564.7685547,240.674057l12.6295166,27.2108612"/>
+	<path class="dot" d="M688.7314453,240.674057l-12.6295166,27.2108612"/>
+	<path class="dash" d="M700.4151611,241.8845062l5.7529907,24.7899933"/>
+	<path class="dot" d="M761.8348389,241.8845062l-5.7529297,24.7899628"/>
+	<path class="dash" d="M773.5185547,240.674057l12.6295166,27.2108612"/>
+	<path class="dash" d="M799.1239624,301.502655l10.3438721,33.1818848"/>
+	<path class="dot" d="M792.34729,302.2623291l-2.4954834,32.0210571"/>
+	<path class="grey dash" d="M756.1107788,301.8459167l7.6352539,32.6573486"/>
+	<path class="dot" d="M749.2194214,302.1032104l-5.0289307,32.2642212"/>
+	<path class="grey dash" d="M713.0306396,302.1032104l5.0289307,32.2642212"/>
+	<path class="grey dot" d="M706.1392822,301.8459167l-7.6353149,32.6573486"/>
+	<path class="grey dash" d="M669.90271,302.2623291l2.4954834,32.0210571"/>
+	<path class="dot" d="M663.1259766,301.502655l-10.3438721,33.1818848"/>
+	<path class="grey dash" d="M590.3739624,301.502655l10.3438721,33.1818848"/>
+	<path class="grey dot" d="M583.59729,302.2623291l-2.4954834,32.0210571"/>
+	<path class="grey dash" d="M547.3607788,301.8459167l7.6353149,32.6573486"/>
+	<path class="grey dot" d="M540.4694214,302.1032104l-5.0289307,32.2642212"/>
+	<path class="grey dash" d="M504.2805786,302.1032104l5.0289001,32.2642212"/>
+	<path class="dot" d="M497.3892517,301.8459167l-7.6352539,32.6573486"/>
+	<path class="dash" d="M461.15271,302.2623291l2.4955139,32.0210571"/>
+	<path class="dot" d="M454.3760071,301.502655l-10.3439026,33.1818848"/>
+	<path class="dash" d="M381.6239929,301.502655l10.3439026,33.1818848"/>
+	<path class="grey dot" d="M374.84729,302.2623291l-2.4955139,32.0210571"/>
+	<path class="grey dash" d="M338.6107483,301.8459167l7.6352844,32.6573486"/>
+	<path class="grey dot" d="M331.7193909,302.1032104l-5.0289001,32.2641907"/>
+	<path class="grey dash" d="M295.5306091,302.1032104l5.0289307,32.2642212"/>
+	<path class="dot" d="M288.6392517,301.8459167l-7.6352844,32.6573486"/>
+	<path class="grey dash" d="M252.40271,302.2623291l2.4955139,32.0210571"/>
+	<path class="grey dot" d="M245.6260223,301.502655l-10.3438873,33.1818848"/>
+	<path class="dash" d="M172.8740082,301.502655l10.3438873,33.1818848"/>
+	<path class="grey dot" d="M166.0973053,302.2623291l-2.4955139,32.0210571"/>
+	<path class="grey dash" d="M129.8607635,301.8459167l7.6352844,32.6573486"/>
+	<path class="grey dot" d="M122.9694138,302.1032104l-5.0289078,32.2642212"/>
+	<path class="dash" d="M86.7806091,302.1032104l5.0289078,32.2642212"/>
+	<path class="grey dot" d="M79.8892593,301.8459167l-7.6352768,32.6573486"/>
+	<path class="dash" d="M43.65271,302.2623291l2.4955025,32.0210571"/>
+	<path class="dot" d="M36.8760147,301.502655l-10.3438854,33.1818848"/>
+	<switch><text x="209" y="106" id="trsvg43"><tspan id="trsvg1">E</tspan></text></switch>
+	<switch><text x="626" y="106" id="trsvg44"><tspan id="trsvg2">T</tspan></text></switch>
+	<switch><text x="105" y="166" id="trsvg45"><tspan id="trsvg3">I</tspan></text></switch>
+	<switch><text x="314" y="166" id="trsvg46"><tspan id="trsvg4">A</tspan></text></switch>
+	<switch><text x="522" y="166" id="trsvg47"><tspan id="trsvg5">N</tspan></text></switch>
+	<switch><text x="731" y="166" id="trsvg48"><tspan id="trsvg6">M</tspan></text></switch>
+	<switch><text x="70" y="234" id="trsvg49"><tspan id="trsvg7">S</tspan></text></switch>
+	<switch><text x="140" y="234" id="trsvg50"><tspan id="trsvg8">U</tspan></text></switch>
+	<switch><text x="279" y="234" id="trsvg51"><tspan id="trsvg9">R</tspan></text></switch>
+	<switch><text x="349" y="234" id="trsvg52"><tspan id="trsvg10">W</tspan></text></switch>
+	<switch><text x="488" y="234" id="trsvg53"><tspan id="trsvg11">D</tspan></text></switch>
+	<switch><text x="558" y="234" id="trsvg54"><tspan id="trsvg12">K</tspan></text></switch>
+	<switch><text x="696" y="234" id="trsvg55"><tspan id="trsvg13">G</tspan></text></switch>
+	<switch><text x="766" y="234" id="trsvg56"><tspan id="trsvg14">O</tspan></text></switch>
+	<switch><text x="42" y="294" id="trsvg57"><tspan id="trsvg15">H</tspan></text></switch>
+	<switch><text x="84" y="294" id="trsvg58"><tspan id="trsvg16">V</tspan></text></switch>
+	<switch><text x="126" y="294" id="trsvg59"><tspan id="trsvg17">F</tspan></text></switch>
+	<switch><text x="252" y="294" id="trsvg60"><tspan id="trsvg18">L</tspan></text></switch>
+	<switch><text x="335" y="294" id="trsvg61"><tspan id="trsvg19">P</tspan></text></switch>
+	<switch><text x="376" y="294" id="trsvg62"><tspan id="trsvg20">J</tspan></text></switch>
+	<switch><text x="461" y="294" id="trsvg63"><tspan id="trsvg21">B</tspan></text></switch>
+	<switch><text x="501" y="294" id="trsvg64"><tspan id="trsvg22">X</tspan></text></switch>
+	<switch><text x="543" y="294" id="trsvg65"><tspan id="trsvg23">C</tspan></text></switch>
+	<switch><text x="585" y="294" id="trsvg66"><tspan id="trsvg24">Y</tspan></text></switch>
+	<switch><text x="669" y="294" id="trsvg67"><tspan id="trsvg25">Z</tspan></text></switch>
+	<switch><text x="710" y="292" id="trsvg68"><tspan id="trsvg26">Q</tspan></text></switch>
+	<switch><text x="24" y="351" class="tiny" id="trsvg69"><tspan id="trsvg27">5</tspan></text></switch>
+	<switch><text x="46" y="351" class="tiny" id="trsvg70"><tspan id="trsvg28">4</tspan></text></switch>
+	<switch><text x="94" y="351" class="tiny" id="trsvg71"><tspan id="trsvg29">3</tspan></text></switch>
+	<switch><text x="187" y="351" class="tiny" id="trsvg72"><tspan id="trsvg30">2</tspan></text></switch>
+	<switch><text x="279" y="350" class="tiny" id="trsvg73"><tspan id="trsvg31">+</tspan></text></switch>
+	<switch><text x="395" y="351" class="tiny" id="trsvg74"><tspan id="trsvg32">1</tspan></text></switch>
+	<switch><text x="441" y="351" class="tiny" id="trsvg75"><tspan id="trsvg33">6</tspan></text></switch>
+	<switch><text x="465" y="350" class="tiny" id="trsvg76"><tspan id="trsvg34">=</tspan></text></switch>
+	<switch style="font-size: 16px"><text x="489" y="349" style="font-size: 16px" id="trsvg77"><tspan id="trsvg35">/</tspan></text></switch>
+	<switch><text x="650" y="351" class="tiny" id="trsvg78"><tspan id="trsvg36">7</tspan></text></switch>
+	<switch><text x="743" y="351" class="tiny" id="trsvg79"><tspan id="trsvg37">8</tspan></text></switch>
+	<switch><text x="790" y="351" class="tiny" id="trsvg80"><tspan id="trsvg38">9</tspan></text></switch>
+	<switch><text x="813" y="351" class="tiny" id="trsvg81"><tspan id="trsvg39">0</tspan></text></switch>
+	<g>
+		<circle r="37" cx="418" cy="39" class="big"/>
+		<switch><text x="417" y="48" class="big" id="trsvg82-fr" systemLanguage="fr"><tspan id="trsvg40-fr">début</tspan></text><text x="417" y="48" class="big" id="trsvg82"><tspan id="trsvg40">start</tspan></text></switch>
+	</g>
+	<g>
+		<g>
+			<line class="dot big" style="stroke-dasharray: 3.5, 8.5" x1="102.2679901" y1="50.8910065" x2="249.2680054" y2="50.8910065"/>
+			<path class="arrowhead" d="M120.2640381,50.9020538l12-12l-42,12l42,12L120.2640381,50.9020538z"/>
+		</g>
+		<switch><text x="177" y="35" class="big" id="trsvg83-fr" systemLanguage="fr"><tspan id="trsvg41-fr">Point</tspan></text><text x="177" y="35" class="big" id="trsvg83"><tspan id="trsvg41">Dot</tspan></text></switch>
+	</g>
+	<g>
+		<g>
+			<line class="dash big" style="stroke-dasharray: 8.55, 9.55" x1="592.7290039" y1="50.8910065" x2="727.7290039" y2="50.8910065"/>
+			<path class="arrowhead" d="M715.7359619,50.9020538l-12,12l42-12l-42-12L715.7359619,50.9020538z"/>
+		</g>
+		<switch><text x="657" y="35" class="big" id="trsvg84-fr" systemLanguage="fr"><tspan id="trsvg42-fr">Tiret</tspan></text><text x="657" y="35" class="big" id="trsvg84"><tspan id="trsvg42">Dash</tspan></text></switch>
+	</g>
+</svg>
