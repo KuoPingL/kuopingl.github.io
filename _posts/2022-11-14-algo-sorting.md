@@ -441,13 +441,13 @@ Also, what **Insertion Sort** is doing here is called **divide and conquer**, th
 ><br>Here is a simple demo showing how **Insertion Sort** can sort an array [ 5, 9, 3, 1, 2, 8, 4, 7, 6 ] in **ascending order**.
 ><br><br/>
 
-0. [ <u>**5**</u>, 9, 3, 1, 2, 8, 4, 7, 6 ] &rarr; ( pick **5** as the **inital** value )
-2. [ <u>**5**</u>, **9**, 3, 1, 2, 8, 4, 7, 6 ] , [**9**] &rarr; ( holds 9 ; compare 9 and 5 )
-3. [ <u>**5**</u>, <u>**9**</u>, **3**, 1, 2, 8, 4, 7, 6 ] , [**3**] &rarr; (holds 3 ; compare 3 with 9)
-4. [ <u>**5**</u>, 9, <u>**9**</u>, 1, 2, 8, 4, 7, 6 ] , [**3**] &rarr; (since **9 > 3**, shift 9 to the right )
-5. [ 5, <u>**5**</u>, <u>**9**</u>, 1, 2, 8, 4, 7, 6 ] , [**3**] &rarr; ( since **5 > 3** , shift 5 to the right )
-6. [ <u>**3**</u>, <u>**5**</u>, <u>**9**</u>, 1, 2, 8, 4, 7, 6 ] &rarr; ( place 3 back to array )
-7. [ <u>**3**</u>, <u>**5**</u>, <u>**9**</u>, **1**, 2, 8, 4, 7, 6 ] , [**1**] &rarr; (holds 1 ; compare 1 and 9)
+0. [ **<u>5</u>**, 9, 3, 1, 2, 8, 4, 7, 6 ] &rarr; ( pick **5** as the **inital** value )
+2. [ **<u>5</u>**, **9**, 3, 1, 2, 8, 4, 7, 6 ] , [**9**] &rarr; ( holds 9 ; compare 9 and 5 )
+3. [ **<u>5</u>**, **<u>9</u>**, **3**, 1, 2, 8, 4, 7, 6 ] , [**3**] &rarr; (holds 3 ; compare 3 with 9)
+4. [ **<u>5</u>**, 9, **<u>9</u>**, 1, 2, 8, 4, 7, 6 ] , [**3**] &rarr; (since **9 > 3**, shift 9 to the right )
+5. [ 5, **<u>5</u>**, **<u>9</u>**, 1, 2, 8, 4, 7, 6 ] , [**3**] &rarr; ( since **5 > 3** , shift 5 to the right )
+6. [ **<u>3</u>**, **<u>5</u>**, **<u>9</u>**, 1, 2, 8, 4, 7, 6 ] &rarr; ( place 3 back to array )
+7. [ **<u>3</u>**, **<u>5</u>**, **<u>9</u>**, **1**, 2, 8, 4, 7, 6 ] , [**1**] &rarr; (holds 1 ; compare 1 and 9)
 8. ... **skip to result**
 
 Now you should be able to understand how **Insertion Sort** is done, the final result should be [ **1**, **2**, **3**, **4**, **5**, **6**, **7**, **8**, **9** ]
