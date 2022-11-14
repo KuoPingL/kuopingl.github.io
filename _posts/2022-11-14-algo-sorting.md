@@ -2,7 +2,10 @@
 layout: post
 title:  "Algorithm - Sorting"
 date:   2022-11-14 15:27:40 +08:00
+<<<<<<< HEAD
 use_math: true
+=======
+>>>>>>> 922b1f7 (add: Algorithm: Sorting)
 categories: [algorithm, beginner]
 ---
 
@@ -10,21 +13,31 @@ categories: [algorithm, beginner]
 This article will focus on sorting algorithms including :
 
 Table 1 : **Comparison** based sorting algorithm
+<<<<<<< HEAD
 
+=======
+>>>>>>> 922b1f7 (add: Algorithm: Sorting)
 |Algorithm|Best|Average |Worst|Space |
 |--|:--|:--:|:--:|:--:|
 |**Bubble**|  **Ω ( n<sup>2</sup> )**|**Θ ( n<sup>2</sup> )**|**O ( n<sup>2</sup> )**|**O ( 1 )**|
 |**Selection**| **Ω ( n<sup>2</sup> )** |**Θ ( n<sup>2</sup> )**|**O ( n<sup>2</sup> )**|**O ( 1 )**|
 |**Insertion** |**Ω ( n )**|**Θ ( n<sup>2</sup> )**|**O ( n<sup>2</sup> )**|**O ( 1 )**|
 |**[Shellsort](https://en.wikipedia.org/wiki/Shellsort)**   |  **Ω ( log n )<br>Ω ( log<sup>2</sup> n )** | ---  | **O ( n<sup>2</sup> )<br>O ( log n )**  | **O ( n )**  |
+<<<<<<< HEAD
 |**Merge**| **Ω ( n log n )**|**Θ ( n log n )**|**O ( n log n )**| **O ( n )**|
+=======
+|**Merge**| **Ω ( n log n )**|**Θ ( n log n )**|**O ( n log n )**| **O ( n )**|**O ( 1 )**|
+>>>>>>> 922b1f7 (add: Algorithm: Sorting)
 |**Heap**| **Ω ( n log n )**|**Θ ( n log n )**|**O ( n log n )**|**O ( 1 )**|
 |**[Quicksort](https://en.wikipedia.org/wiki/Quicksort)** |**Ω ( n log n )**|**Θ ( n log n )**|**O ( n<sup>2</sup> )**<br>**O ( n log n )**|**O ( log n )**|
 
 
 
 Table 2 : **Non-comparison** based sorting algorithm
+<<<<<<< HEAD
 
+=======
+>>>>>>> 922b1f7 (add: Algorithm: Sorting)
 |Algorithm|Best|Average |Worst|Space |
 |--|:--|:--:|:--:|:--:|
 |**Count**| **Ω ( n + k )** |**Θ ( n + k )**|**O ( n + k )**|**O ( n + k )**|
@@ -222,6 +235,7 @@ This is what we'll get, because the inner loop will only enter $(n-2)$ times, th
 
 But this will only improve the best and the average complexity.
 
+<<<<<<< HEAD
 <details markdown="1">
   <summary><b>Epcot Center</b></summary>
 
@@ -237,6 +251,13 @@ But this will only improve the best and the average complexity.
 <summary><b>CPP ( Iteration )</b></summary>
 
 ```CPP
+=======
+#### Source Code
+<details>
+<summary><b>CPP ( Iteration )</b></summary>
+
+```cpp
+>>>>>>> 922b1f7 (add: Algorithm: Sorting)
 using namespace std;
 #include <vector>
 
@@ -262,10 +283,16 @@ void iteratorSort(vector<int> &nums) {
 }
 ```
 
+<<<<<<< HEAD
 
 </details>
 
 <details markdown="1">
+=======
+</details>
+
+<details>
+>>>>>>> 922b1f7 (add: Algorithm: Sorting)
 <summary><b>CPP ( Recursive )</b></summary>
 
 ```CPP
@@ -387,7 +414,11 @@ Before optimization, in the **best-case**, swapping has a complexity of $\Omega(
 
 #### Source Code
 
+<<<<<<< HEAD
 <details markdown="1">
+=======
+<details>
+>>>>>>> 922b1f7 (add: Algorithm: Sorting)
 <summary><b>C++</b></summary>
 
 ```CPP
@@ -441,6 +472,7 @@ Also, what **Insertion Sort** is doing here is called **divide and conquer**, th
 ><br>Here is a simple demo showing how **Insertion Sort** can sort an array [ 5, 9, 3, 1, 2, 8, 4, 7, 6 ] in **ascending order**.
 ><br><br/>
 
+<<<<<<< HEAD
 0. [ **<u>5</u>**, 9, 3, 1, 2, 8, 4, 7, 6 ] &rarr; ( pick **5** as the **inital** value )
 2. [ **<u>5</u>**, **9**, 3, 1, 2, 8, 4, 7, 6 ] , [**9**] &rarr; ( holds 9 ; compare 9 and 5 )
 3. [ **<u>5</u>**, **<u>9</u>**, **3**, 1, 2, 8, 4, 7, 6 ] , [**3**] &rarr; (holds 3 ; compare 3 with 9)
@@ -448,6 +480,15 @@ Also, what **Insertion Sort** is doing here is called **divide and conquer**, th
 5. [ 5, **<u>5</u>**, **<u>9</u>**, 1, 2, 8, 4, 7, 6 ] , [**3**] &rarr; ( since **5 > 3** , shift 5 to the right )
 6. [ **<u>3</u>**, **<u>5</u>**, **<u>9</u>**, 1, 2, 8, 4, 7, 6 ] &rarr; ( place 3 back to array )
 7. [ **<u>3</u>**, **<u>5</u>**, **<u>9</u>**, **1**, 2, 8, 4, 7, 6 ] , [**1**] &rarr; (holds 1 ; compare 1 and 9)
+=======
+0. [ <u>**5**</u>, 9, 3, 1, 2, 8, 4, 7, 6 ] &rarr; ( pick **5** as the **inital** value )
+2. [ <u>**5**</u>, **9**, 3, 1, 2, 8, 4, 7, 6 ] , [**9**] &rarr; ( holds 9 ; compare 9 and 5 )
+3. [ <u>**5**</u>, <u>**9**</u>, **3**, 1, 2, 8, 4, 7, 6 ] , [**3**] &rarr; (holds 3 ; compare 3 with 9)
+4. [ <u>**5**</u>, 9, <u>**9**</u>, 1, 2, 8, 4, 7, 6 ] , [**3**] &rarr; (since **9 > 3**, shift 9 to the right )
+5. [ 5, <u>**5**</u>, <u>**9**</u>, 1, 2, 8, 4, 7, 6 ] , [**3**] &rarr; ( since **5 > 3** , shift 5 to the right )
+6. [ <u>**3**</u>, <u>**5**</u>, <u>**9**</u>, 1, 2, 8, 4, 7, 6 ] &rarr; ( place 3 back to array )
+7. [ <u>**3**</u>, <u>**5**</u>, <u>**9**</u>, **1**, 2, 8, 4, 7, 6 ] , [**1**] &rarr; (holds 1 ; compare 1 and 9)
+>>>>>>> 922b1f7 (add: Algorithm: Sorting)
 8. ... **skip to result**
 
 Now you should be able to understand how **Insertion Sort** is done, the final result should be [ **1**, **2**, **3**, **4**, **5**, **6**, **7**, **8**, **9** ]
@@ -571,7 +612,11 @@ Actually, there is nothing that you can do to optimize this algorithm anymore.
 
 #### Source Code
 
+<<<<<<< HEAD
 <details markdown="1">
+=======
+<details>
+>>>>>>> 922b1f7 (add: Algorithm: Sorting)
 <summary><b>C++ ( Iteration ) </b></summary>
 
 ```cpp
@@ -612,7 +657,11 @@ static void iterationSort(vector<int>& nums) {
 
 </details>
 
+<<<<<<< HEAD
 <details markdown="1">
+=======
+<details>
+>>>>>>> 922b1f7 (add: Algorithm: Sorting)
 <summary><b>C++ ( Recursive )</b></summary>
 
 ```cpp
@@ -787,7 +836,11 @@ Perhaps we could have more discussion on this topic in the future.
 
 #### Source Code
 
+<<<<<<< HEAD
 <details markdown="1">
+=======
+<details>
+>>>>>>> 922b1f7 (add: Algorithm: Sorting)
 <summary><b>C++ Iterative</b></summary>
 
 ```CPP
@@ -1350,7 +1403,11 @@ If we look at the `merge`, we can see that it simply uses an array that has the 
 $$\text{Space Complexity} = O(n)$$
 
 #### Source Code
+<<<<<<< HEAD
 <details markdown="1">
+=======
+<details>
+>>>>>>> 922b1f7 (add: Algorithm: Sorting)
 <summary>C++ Iteration </summary>
 
 ```CPP
@@ -1387,7 +1444,11 @@ static void sortIterativelyCorrectly(vector<int>& nums) {
 
 </details>
 
+<<<<<<< HEAD
 <details markdown="1">
+=======
+<details>
+>>>>>>> 922b1f7 (add: Algorithm: Sorting)
 <summary>C++ Recursion </summary>
 
 ```CPP
@@ -1407,7 +1468,11 @@ static void sortRecursively(vector<int>& nums, int start, int end) {
 
 </details>
 
+<<<<<<< HEAD
 <details markdown="1">
+=======
+<details>
+>>>>>>> 922b1f7 (add: Algorithm: Sorting)
 <summary>C++ Merge </summary>
 
 ```CPP
@@ -1908,7 +1973,11 @@ Since this algorithm is a **in-place** algorithm, it has a space complexity of $
 
 #### Source Code
 
+<<<<<<< HEAD
 <details markdown="1">
+=======
+<details>
+>>>>>>> 922b1f7 (add: Algorithm: Sorting)
 <summary><b>C++ Iteration</b></summary>
 
 ```CPP
@@ -1961,7 +2030,11 @@ static void swap(vector<int>& tree, int a, int b) {
 
 </details>
 
+<<<<<<< HEAD
 <details markdown="1">
+=======
+<details>
+>>>>>>> 922b1f7 (add: Algorithm: Sorting)
 <summary><b>C++ Recursion</b></summary>
 
 ```CPP
@@ -2460,7 +2533,11 @@ $$\text{space complexity}_\text{best case} = 2log(n) = O(log(n))$$
 
 #### Source Code
 
+<<<<<<< HEAD
 <details markdown="1">
+=======
+<details>
+>>>>>>> 922b1f7 (add: Algorithm: Sorting)
 <summary><b>C++ Recursive</b></summary>
 
 ```CPP
@@ -2493,7 +2570,11 @@ static int partition(vector<int>& nums, int low, int high) {
 ```
 </details>
 
+<<<<<<< HEAD
 <details markdown="1">
+=======
+<details>
+>>>>>>> 922b1f7 (add: Algorithm: Sorting)
 <summary><b>C++ Iterative</b></summary>
 
 ```CPP
@@ -2542,7 +2623,11 @@ static int partition(vector<int>& nums, int low, int high) {
 
 </details>
 
+<<<<<<< HEAD
 <details markdown="1">
+=======
+<details>
+>>>>>>> 922b1f7 (add: Algorithm: Sorting)
 <summary><b>C++ Iterative (Optimized)</b></summary>
 
 ```CPP
@@ -2761,7 +2846,11 @@ Thus, the space complexity for **Counting Sort** is $O(n + k)$.
 
 #### Source Code
 
+<<<<<<< HEAD
 <details markdown="1">
+=======
+<details>
+>>>>>>> 922b1f7 (add: Algorithm: Sorting)
 <summary><b>C++ </b></summary>
 
 ```CPP
@@ -2942,7 +3031,11 @@ From the code, we know that we need $k$ number of buckets that holds all **n** n
 
 #### Source Code
 
+<<<<<<< HEAD
 <details markdown="1">
+=======
+<details>
+>>>>>>> 922b1f7 (add: Algorithm: Sorting)
 <summary><b>C++ </b></summary>
 
 ```CPP
@@ -3211,7 +3304,11 @@ Since in our case, **Radix Sort** is not an in-place sorting algorithm, it will 
 
 #### Source Code
 
+<<<<<<< HEAD
 <details markdown="1">
+=======
+<details>
+>>>>>>> 922b1f7 (add: Algorithm: Sorting)
 <summary><b>C++ LSD with Vector</b></summary>
 
 ```CPP
@@ -3255,7 +3352,11 @@ void lsdSortVector(vector<int>& nums, int max) {
 
 </details>
 
+<<<<<<< HEAD
 <details markdown="1">
+=======
+<details>
+>>>>>>> 922b1f7 (add: Algorithm: Sorting)
 <summary><b>C++ LSD with LinkedList</b></summary>
 
 ```CPP
@@ -3339,7 +3440,11 @@ int popFirst(node*& header) {
 </details>
 
 
+<<<<<<< HEAD
 <details markdown="1">
+=======
+<details>
+>>>>>>> 922b1f7 (add: Algorithm: Sorting)
 <summary><b>C++ MSD with LinkedList</b></summary>
 
 ```CPP
