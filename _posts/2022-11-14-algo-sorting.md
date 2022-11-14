@@ -17,7 +17,7 @@ Table 1 : **Comparison** based sorting algorithm
 |**Selection**| **Ω ( n<sup>2</sup> )** |**Θ ( n<sup>2</sup> )**|**O ( n<sup>2</sup> )**|**O ( 1 )**|
 |**Insertion** |**Ω ( n )**|**Θ ( n<sup>2</sup> )**|**O ( n<sup>2</sup> )**|**O ( 1 )**|
 |**[Shellsort](https://en.wikipedia.org/wiki/Shellsort)**   |  **Ω ( log n )<br>Ω ( log<sup>2</sup> n )** | ---  | **O ( n<sup>2</sup> )<br>O ( log n )**  | **O ( n )**  |
-|**Merge**| **Ω ( n log n )**|**Θ ( n log n )**|**O ( n log n )**| **O ( n )**|**O ( 1 )**|
+|**Merge**| **Ω ( n log n )**|**Θ ( n log n )**|**O ( n log n )**| **O ( n )**|
 |**Heap**| **Ω ( n log n )**|**Θ ( n log n )**|**O ( n log n )**|**O ( 1 )**|
 |**[Quicksort](https://en.wikipedia.org/wiki/Quicksort)** |**Ω ( n log n )**|**Θ ( n log n )**|**O ( n<sup>2</sup> )**<br>**O ( n log n )**|**O ( log n )**|
 
