@@ -2,6 +2,7 @@
 layout: post
 title:  "Algorithm - Complexity"
 date:   2022-10-23 17:38:00+08:00
+use_math: true
 categories: [algorithm, beginner]
 ---
 
@@ -116,7 +117,7 @@ Now with the formula prepared, we can examine its performance in **best-case**, 
 ><br>The best case scenario is obviously when the array is already sorted.
 <br><br/>
 
-In this case, the inner loop will never enter thus $m_i = 1$ :
+In this case, the inner loop will never enter thus \\(m_i = 1\\) :
 
 $$\begin{aligned}T(n)&=c_1+c_3n + c_4(n-1) + c_5(n-1)\\&+ c_6(n-1)+c_{10}(n-1)\end{aligned}$$
 
