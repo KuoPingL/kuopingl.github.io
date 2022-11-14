@@ -145,16 +145,23 @@ $(document).ready(function(){
   var updateTocHeight = function() {
       var height = document.documentElement.clientHeight;
       height = height || 'auto';
+
+      var divHeight = $('#post-directory-module').height();
+      if (divHeight >= window.outerHeight) {
+        height = window.outerHeight;
+      }
+
       $('.post-directory').css('max-height', height);
   }
 
   $(window).scroll(function() {
     var currentScroll = $(window).scrollTop();
+
     if (currentScroll >= fixmeTop) {
       $('#post-directory-module').css({
         top: '0',
         position: 'fixed',
-        width: 'inherit'
+        width: 'inherit',
       });
       $('.post-directory').css('overflow', 'auto');
     } else {
