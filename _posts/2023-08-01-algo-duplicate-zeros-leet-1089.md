@@ -31,7 +31,7 @@ Explanation: After calling your function, the input array is modified to: [1,2,3
 
 **Constraints**:
 
-1 <= `arr.length` <= $10^4$
+1 <= `arr.length` <= $10^4$ <br>
 0 <= `arr[i]` <= 9
 
 ## 理解題目
