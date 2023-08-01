@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Algorithm：Longest Common Subsequence
+title: Algorithm：LeetCode 1089 Duplicate Zeros
 date: 2023-08-01 00:40:20 +08:00
 categories: [Algorithm]
 use_math: true
