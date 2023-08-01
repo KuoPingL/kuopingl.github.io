@@ -407,23 +407,20 @@ class Solution {
     fun duplicateZeros(arr: IntArray): Unit {
         var lastIndex = arr.size - 1
         var zeroCounter = 0
-        var i = 0
+        var i = -1
 
-        while(i <= lastIndex) {
+        while(i < lastIndex) {
+            i++
             if(arr[i] == 0) {
                 lastIndex --
                 zeroCounter ++
             }
-            i++
         }
-
-        // 這才是正確 i
-        i --
 
         if (lastIndex < i) {
-          arr[arr.size - 1] = 0
-          zeroCounter --
-        }
+            arr[arr.size - 1] = 0
+            zeroCounter --
+        } 
 
         while(zeroCounter > 0) {
           if (arr[lastIndex] == 0) {
@@ -447,9 +444,10 @@ class Solution {
     fun duplicateZeros(arr: IntArray): Unit {
         var lastIndex = arr.size - 1
         var zeroCounter = 0
-        var i = 0
+        var i = -1
 
-        while(i <= lastIndex) {
+        while(i < lastIndex) {
+            i++
             if(arr[i] == 0) {
                 lastIndex --
                 zeroCounter ++
@@ -457,12 +455,8 @@ class Solution {
                 if (lastIndex < i) {
                   arr[arr.size - 1] = 0
                   zeroCounter --
-                  break
-                } else if (lastIndex == i) {
-                  break
                 }
             }
-            i++
         }
 
         while(zeroCounter > 0) {
