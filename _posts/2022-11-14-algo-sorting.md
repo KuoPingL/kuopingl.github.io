@@ -222,6 +222,17 @@ This is what we'll get, because the inner loop will only enter $(n-2)$ times, th
 
 But this will only improve the best and the average complexity.
 
+<<<<<<< HEAD
+=======
+<details markdown="1">
+  <summary><b>Epcot Center</b></summary>
+
+  ```CPP
+      TEST
+  ```
+</details>
+
+>>>>>>> origin/gh-pages
 
 #### Source Code
 
@@ -254,6 +265,12 @@ void iteratorSort(vector<int> &nums) {
 }
 ```
 
+<<<<<<< HEAD
+=======
+
+</details>
+
+>>>>>>> origin/gh-pages
 <details markdown="1">
 <summary><b>CPP ( Recursive )</b></summary>
 
@@ -601,7 +618,10 @@ static void iterationSort(vector<int>& nums) {
 
 </details>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/gh-pages
 <details markdown="1">
 <summary><b>C++ ( Recursive )</b></summary>
 
@@ -3328,6 +3348,10 @@ int popFirst(node*& header) {
 
 </details>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/gh-pages
 <details markdown="1">
 <summary><b>C++ MSD with LinkedList</b></summary>
 
