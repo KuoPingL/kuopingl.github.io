@@ -57,6 +57,130 @@ UI 將才取 TikTok Vibe：
 <details>
 <summary> PermissionUtils </summary>
     ```kotlin
+    object PermissionUtils {
+
+    /**
+     * Request Code for Storage
+     */
+    const val STORAGE_REQUEST_CODE = 100
+
+    /**
+     * check if storage permission is granted
+     * @return true if permission is granted. You can call #requestStoragePermission afterward
+     */
+    fun isStoragePermissionGranted(context: Context): Boolean {
+        return if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
+            checkPermissions(context, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        }
+        else if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            checkPermissions(context, Manifest.permission.READ_EXTERNAL_STORAGE)
+        } else {
+            checkPermissions(context, Manifest.permission.READ_MEDIA_VIDEO)
+        }
+    }
+
+    private fun checkPermissions(context: Context, vararg permissions: String): Boolean {
+        for (permission in permissions) {
+            if (ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_DENIED) {
+                return false
+            }
+        }
+        return true
+    }
+
+    fun handleStoragePermissionResult(permissions: Array<out String>,
+                                      grantResults: IntArray,
+                                      context: AppCompatActivity) {
+        val nonGrantedPermissions = arrayListOf<String>()
+
+        for (i in 0 until grantResults.size) {
+            if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
+                nonGrantedPermissions.add(permissions[i])
+            }
+        }
+
+        if (nonGrantedPermissions.size > 0) {
+
+            val shouldRedirectToSettings = SharedPref.getRequestCountForStoragePermission(
+                STORAGE_PERMISSION_REQUEST_COUNT) >= 1
+
+            showRationaleForStoragePermission(context, shouldRedirectToSettings, onPositiveClicked = {
+
+                if (shouldRedirectToSettings) {
+                    // direct to setting
+                    (context.application as SMPApplication).goToSettings()
+                } else {
+                    SharedPref.incrementStoragePermissionCounter(STORAGE_PERMISSION_REQUEST_COUNT)
+                    requestStoragePermission(context)
+                }
+
+                it.dismiss()
+            }, onNegativeClicked = {
+                it.dismiss()
+            })
+
+        } else {
+        //  val t = MediaStore.Images.Media.INTERNAL_CONTENT_URI
+            val t = MediaStore.Files.getContentUri("external")
+            Log.i("TAG", t.path?:"NONE")
+        }
+    }
+
+    /**
+     *
+     */
+    fun requestStoragePermission(activity: Activity): Boolean {
+
+        val permissions = arrayListOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q /*29*/) {
+            permissions.clear()
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                permissions.add(Manifest.permission.READ_MEDIA_VIDEO)
+            } else {
+                permissions.add(Manifest.permission.READ_EXTERNAL_STORAGE)
+            }
+        }
+
+        for (permission in permissions) {
+            if (ContextCompat.checkSelfPermission(activity, permission) == PackageManager.PERMISSION_DENIED) {
+                ActivityCompat.requestPermissions(activity, permissions.toTypedArray(), STORAGE_REQUEST_CODE)
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     *
+     */
+    private fun showRationaleForStoragePermission(context: AppCompatActivity,
+                                          shouldRedirectToSettings: Boolean = false,
+                                          onPositiveClicked:(DialogInterface)->Unit, onNegativeClicked: (DialogInterface)->Unit ) {
+        // create a dialog
+        val dia = AlertDialog.Builder(context).apply {
+            setCancelable(false)
+            setTitle(context.resources.getString(R.string.permission_required_title))
+            setMessage(context.resources.getString( if (shouldRedirectToSettings) R.string.msg_storage_permission_denied_warning else R.string.msg_storage_permission_required))
+
+            setPositiveButton(
+                context.resources.getString(if (shouldRedirectToSettings) R.string.btn_settings
+                else R.string.btn_ok)) { dialog: DialogInterface, which: Int ->
+                onPositiveClicked(dialog)
+            }
+
+            setNegativeButton(context.resources.getString(R.string.btn_cancel)) {dialog: DialogInterface, which: Int ->
+                onNegativeClicked(dialog)
+            }
+        }
+
+        dia.show()
+    }
+
+}
     ```
 </details>
 
