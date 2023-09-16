@@ -56,9 +56,11 @@ UI 將才取 TikTok Vibe：
 
 <details>
 <summary> PermissionUtils </summary>
-    ```kotlin
-    val aaa
-    ```
+
+```kotlin
+val aaa
+```
+    
 </details>
 
 <br>
