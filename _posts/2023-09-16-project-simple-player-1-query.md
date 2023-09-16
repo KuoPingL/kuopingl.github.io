@@ -54,8 +54,7 @@ UI 將才取 TikTok Vibe：
 另外還搭配 **SharedPreferences** 來記錄請求次數。
 因為 Google 要求請求次數在 2 次之後就無法再次進行 Permission 的請求。此時我們就必須讓使用者導向 Settings 來手動更改。
 
-<details>
-<summary> PermissionUtils </summary>
+**PermissionUtils**
 
 ```kotlin
 object PermissionUtils {
@@ -184,7 +183,6 @@ object PermissionUtils {
 }
 ```
     
-</details>
 
 <br>
 
@@ -287,9 +285,6 @@ fun getFileColumns(): Array<String> {
 當然，如果我們不需要全部的資訊時，我們可以隨意挑選。
 
 以下是其他 Columns 的方法：
-
-<details>
-<summary>其他 Columns 的取得方法 </summary>
 
 ```kotlin
 enum class TargetTypes {
@@ -473,8 +468,6 @@ fun getAudioColumns(): Array<String> {
     return columns.toTypedArray()
 }
 ```
-
-</details>
 
 <br>
 
@@ -1056,8 +1049,7 @@ interface CursorHandler {
 
 還有，因為 **Media** 也是有機會以 Parcel 的格式被傳入下一個 Activity 或 Fragment，所以我們也需要實作它。
 
-<details>
-<summary>以下就是 <b>Media</b> 的最終樣子了</summary>
+以下就是 <b>Media</b> 的最終樣子了：
 
 ```kotlin
 // a data class requires at least a variable in the constructor, so it's not suited for our situation
@@ -1256,7 +1248,6 @@ class Media() : Parcelable, CursorHandler<Media> {
     }
 }
 ```
-</details>
 
 # Repository
 
