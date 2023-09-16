@@ -56,9 +56,10 @@ UI 將才取 TikTok Vibe：
 因為 Google 要求請求次數在 2 次之後就無法再次進行 Permission 的請求。此時我們就必須讓使用者導向 Settings 來手動更改。
 
 <details>
-<summary>PermissionUtils</summary>
+<summary> PermissionUtils </summary>
 
 ```kotlin
+
 object PermissionUtils {
 
     /**
