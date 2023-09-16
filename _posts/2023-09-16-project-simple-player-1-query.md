@@ -2,7 +2,6 @@
 layout: post
 title: Simple Player 1 - Query 解說
 categories: [Projects]
-use_math: false
 keywords: android, project, mediaPlayer
 ---
 
