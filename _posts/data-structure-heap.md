@@ -83,7 +83,7 @@ To **Heapify** an array or other data structures, even from other non-heap binar
 
    - we will start by sorting the bottom left subtree
      [ 3, **9**, 2, **2**, **1**, 4, 5 ]
-     This is correct, since the parent ( **9** ) is greater than children 
+     This is correct, since the parent ( **9** ) is greater than children
 
 
 

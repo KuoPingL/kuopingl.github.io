@@ -6,11 +6,14 @@ categories: [custom-view, tutorial, android, intermediate]
 ---
 
 ## Background
-> Have you ever face a situation where you just wish to crank two values in a single slider ?
-> Well, that's what happen during the process of creating a sample app to show Animation demos.
+Have you ever face a situation where you just wish to crank two values in a single slider ?
 
-> <span style="color:rgb(255,100,255);"><b>NOTE</b></span><br> that being said, we could simply use [Material Slider](https://material.io/components/sliders#anatomy), which also support range selection.
+Well, that's what happen during the process of creating a sample app to show Animation demos.
+
+><br> <span style="color:rgb(0,0,0);"><b>NOTE</b></span><br> that being said, we could simply use [Material Slider](https://material.io/components/sliders#anatomy), which also support range selection.
+
 > <br>But who needs a wheel when we can reinvent it, right ? XDD
+> <br><br/>
 
 If you are not familiar with Animation in Android, feel free to look at this [series]().
 
@@ -25,6 +28,7 @@ Here is what we will create :
 Enough said, let's hit the keyboard.
 
 ## Understand the Structure
+
 In order to create a two-way slider, we need to understand how it looks and how it works.
 
 <img class="centerH" src="/images/posts/jekyll/2022-09-21-android-custom-view-two-way-slider-v1-idle-structure.png"/>
@@ -47,8 +51,9 @@ While sliding the thumb, a label will pop on top of the moving thumb :
 
 Now that we got the structure clear, let's decide how do we make it.
 
-> Since the slider needs to be touchable, so it must either be `ViewGroup` or a `View`.
+><br> Since the slider needs to be touchable, so it must either be `ViewGroup` or a `View`.
 > <br>But because it is not a complicated structure with multiple components, I have decided to go with `View`.
+> <br><br/>
 
 ```Java
 public class TwoWaySlider extends View {
@@ -65,16 +70,22 @@ public class TwoWaySlider extends View {
       }
 }
 ```
-> Remember to add public modifier at the constructor, such that classes outside of the library can also use it.
+
+><br> Remember to add public modifier at the constructor, such that classes outside of the library can also use it.
+> <br><br/>
 
 Next, we need to decide what components does it contain.
 
 ### Properties
-> Here we will define all the properties needed for the components mentioned above.
+
+><br> Here we will define all the properties needed for the components mentioned above.
+> <br><br/>
 
 #### Bar & Selected Range
-> The Bar is the main component that other drawings will be based on.
+
+><br> The Bar is the main component that other drawings will be based on.
 > <br> Therefore, other than a `Paint`, it also required a `RectF` to store its location and dimension.
+> <br><br/>
 
 <details>
 <summary><b>Bar</b></summary>
@@ -101,7 +112,9 @@ public void setBarStrokeWidth(float strokeWidth) {
 
 </details>
 
-> Since a selected range is a simplified version of a bar, I will also include it here
+><br> Since a selected range is a simplified version of a bar, I will also include it here
+> <br><br/>
+
 <details>
 <summary><b>Selected Range</b></summary>
 
@@ -132,10 +145,12 @@ Paint getSelectedRangePaint() {
 </details>
 
 #### Thumb
-> The Thumb is similar to Bar, but only a shorter version and is slidable.
+
+><br> The Thumb is similar to Bar, but only a shorter version and is slidable.
 > <br>But having multiple `Paint` and `RectF` laying around might make the code messy.
 > <br> So instead, a `Thumb` class is created just to store info about a `Thumb`, such as its rect, paint and current state (`idle` or `moving`).
 > <br> As for the step the `Thumb` is currently on, it will be calculated by other function.
+> <br><br/>
 
 <details>
 <summary><b>Thumb</b></summary>
@@ -240,7 +255,9 @@ public float getThumbSize() {
 </details>
 
 #### Ticks
-> The Ticks are nothing but drawings on the canvas, so the only thing we need are `Paint` and a flag for user to decide whether to show ticks or not.
+
+><br> The Ticks are nothing but drawings on the canvas, so the only thing we need are `Paint` and a flag for user to decide whether to show ticks or not.
+> <br><br/>
 
 <details>
 <summary><b>Ticks</b></summary>
@@ -260,6 +277,7 @@ public void hideTick() {
 ```
 
 </details>
+
 <br>
 However, there are situations when we won't allow ticks to be shown, even the user asks for it, for instance :
 
@@ -269,9 +287,11 @@ However, there are situations when we won't allow ticks to be shown, even the us
 These situations will be taken into account during the `onDraw` method.
 
 #### Labels
-> There are two types of labels we need to take care of.
+
+><br> There are two types of labels we need to take care of.
 > 1. The label showing the values on each end
 > 2. The value label or bubble that appear when thumb is being slide.
+> <br><br/>
 
 In order to draw text on canvas, we need to use `TextPaint`, a subclass of `Paint`. But if we also need to know the size of the text, a `Rect` is also needed.
 
@@ -336,10 +356,10 @@ public void showBottomValue() {
 </details>
 
 
-> Since changing the starting and ending values will affect the length of a single step, which will need a new precision when defining each step.
+><br> Since changing the starting and ending values will affect the length of a single step, which will need a new precision when defining each step.
 > <br>Therefore, every time they got altered, `calculateAlignmentPrecision` will be called.
 > > `calculateAlignmentPrecision` will recalculate the precision needed. The more steps needed, the more accurate precision is required.
-
+> <br><br/>
 
 <details>
 <summary><b>Value Label</b></summary>
@@ -365,13 +385,17 @@ public void showBubbleLabel() {
 
 </details>
 
-> If we take a closer look at the Value Label, we can see that it can be separated into two shapes : **an arrow** and **a rounded corner rectangle**.
+><br> If we take a closer look at the Value Label, we can see that it can be separated into two shapes : **an arrow** and **a rounded corner rectangle**.
+> <br><br/>
 
 So we will need an `PointF` array to hold the points for the arrow, a `Path` to hold the path of the label and a `Paint` to draw the path.
 
 
 #### Others
-> Other than components mentioned before, we will also need to do calculations or validations upon receiving new values.
+
+><br> Other than components mentioned before, we will also need to do calculations or validations upon receiving new values.
+> <br><br/>
+
 
 Here are a list of functions that do the validations and calculations :
 
@@ -408,10 +432,10 @@ public void shouldShowFullPrecision(boolean shouldShowAllPrecision) {
 
 </details>
 
-> **Precision for values**
+><br> **Precision for values**
 > <br> User can choose the precision or number of decimals they wish to show the values to be.
 > <br><br> If the values calculated has less decimal than requested, user can call `shouldShowFullPrecision` to make sure enough decimals are presented on the screen.
-
+> <br><br/>
 
 <details>
 <summary><b>Setting the Value for the Thumbs</b></summary>
@@ -472,9 +496,11 @@ private float validateValueBeforeSetting(float value) {
 
 </details>
 
-> **Setting Thumb Value**
+
+><br> **Setting Thumb Value**
 > <br> When setting the values, we need to make sure the values are within the range of `_startValue` and `_endValue`.
-> <br><br> After that, we will convert these values into the number of steps the thumb should be in. This is done using ratio.
+> <br> After that, we will convert these values into the number of steps the thumb should be in. This is done using ratio.
+> <br><br/>
 
 ```Java
 _thumbFromStep =
@@ -512,14 +538,16 @@ private int getNumberOfSteps() {
 
 </details>
 
-> **Setting Total Number of Steps**
+><br> **Setting Total Number of Steps**
 > <br> By default, we will set it to **-1**, which will produces 100 steps between any adjacent integer.
 > <br><br>If users decided to define their own number of steps, then we will make sure it has to be greater than 1, unless it is -1, otherwise it will return.
-
+> <br><br/>
 
 #### Initializing
-> Upon creating the `TwoWaySlider`, we can start by initializing some of the parameters we will be using.
+
+><br> Upon creating the `TwoWaySlider`, we can start by initializing some of the parameters we will be using.
 >> The initialization process is used to define some of the default values, including the color, the stroke width, the start and end values, as well as the positioning of thumbs.
+> <br><br/>
 
 <details>
 <summary><b>Initializing</b></summary>
@@ -563,6 +591,7 @@ void init(Context context) {
 ```
 
 </details>
+
 <br>
 With these basic components all set, let's try to display it.
 
@@ -575,18 +604,23 @@ In order to display it properly, we need to override certain methods, namely :
 - `onDraw`
   - responsible for displaying the view on canvas.
 
-> But since we are working with a `View`, we won't be dealing with `onLayout`.
+><br> But since we are working with a `View`, we won't be dealing with `onLayout`.
+> <br><br/>
+
 
 #### onMeasure
+
 ```Java
 @Override
 protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {}
 ```
-> In `onMeasure`, there are several of things we can do, such as:
-  -  extract the **MeasureSpec** modes using `MeasureSpec.getMode` to see which modes, `UNSPECIFIED`, `EXACTLY` and `AT_MOST` ,the width and height are in.
+
+><br> In `onMeasure`, there are several of things we can do, such as:
+>  -  extract the **MeasureSpec** modes using `MeasureSpec.getMode` to see which modes, `UNSPECIFIED`, `EXACTLY` and `AT_MOST` ,the width and height are in.
 >> **EXACTLY** is easy to understand, this is when the view has a specific width or height it wants. Such as when its LayoutParams is set to be `MATCH_PARENT` or specific value.
 >> <br><br>**AT_MOST** is also very straight forward, this is when LayoutParams is set to be `WRAP_CONTENT`.
 >> <br><br>**UNSPECIFIED** can be a bit tricky. This usually happen when the view in added in a ScrollView, where it can be stretched in any sides it wish.
+> <br><br/>
 
 Based on the `MeasureSpec` mode, we can decide the size of the view that we can draw on, in the `onDraw` method.
 
@@ -594,8 +628,7 @@ However, in our case, we are not interested in the `MeasureSpec`, instead, we on
 
 In this case, we can do this :
 
->- get the measured width and height by calling `super.onMeasure`
-
+- get the measured width and height by calling `super.onMeasure`
 
 <details>
 <summary> <b>super.onMeasure</b> </summary>
@@ -634,10 +667,13 @@ protected int getSuggestedMinimumHeight() {
 
 </details>
 
-> By calling the `super.onMeasure` method, it will calculate a suggested width and height that suits the current `ViewGroup`.
+<br>
 
+><br> By calling the `super.onMeasure` method, it will calculate a suggested width and height that suits the current `ViewGroup`.
+> <br><br/>
 
 <br>Therefore, we can make our `onMeasure` to be :
+
 ```Java
 @Override
 protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -662,18 +698,21 @@ So let's determine the minimum width and height required.
 
 ![](/images/posts/jekyll/2022-09-21-android-custom-view-two-way-slider-v1-minimum-size.png)
 
-> **Minimum Width**
+><br> **Minimum Width**
 ><br>The minimum width of the slider should at least contain enough space to put 2 thumbs side by side with text on each ends.
 >> Note that I have ignored the possibility that the values at the bottom might overlap each other as well as the possible trimming on the values shown in the value label.
 >><br><br> These will be left for the users to decide how to implement this library to best suit their needs.
+> <br><br/>
 
 ```Java
 minWidth = (int) (thumbSize * 2 + getPaddingLeft() + getPaddingRight());
 ```
 
->**Minimum Height**
+><br>**Minimum Height**
 ><br> The minimum height will simply be the stroke width of the bar or the size of the thumb, depending on which one is larger.
-><br><br> If user wish to show the bottom labels or the bubble, then the minimum height will add other values to it.
+><br> If user wish to show the bottom labels or the bubble, then the minimum height will add other values to it.
+> <br><br/>
+
 
 ```Java
 minHeight = _barPaint.getStrokeWidth() > thumbSize ?
@@ -720,6 +759,7 @@ setMeasuredDimension(resultWidth, resultHeight);
 
 <br>
 Here is the complete code in `onMeasure`
+
 <details>
 <summary><b>onMeasure Implementation</b></summary>
 
@@ -797,11 +837,12 @@ protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 }
 ```
 </details>
-<br>
 
-Next, though we won't be overriding it, but let's talk about `onLayout` for a bit.
+
+<br>Next, though we won't be overriding it, but let's talk about `onLayout` for a bit.
 
 #### onLayout
+
 ```Java
 @Override
 protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
@@ -811,7 +852,9 @@ protected void onLayout(boolean changed, int left, int top, int right, int botto
 
 The `onLayout` method will tell you if the layout has changed and what are the bounds of the layout.
 
-> `onLayout` is called when `layout` method is triggered, which is called by **ViewRootImpl**'s method `performLayout`.
+><br> `onLayout` is called when `layout` method is triggered, which is called by **ViewRootImpl**'s method `performLayout`.
+> <br><br/>
+
 
 ```Java
 // a method in ViewRootImpl
@@ -820,6 +863,7 @@ private void performLayout(WindowManager.LayoutParams lp, int desiredWindowWidth
 // a method in View
 public void layout(int l, int t, int r, int b){}
 ```
+
 This is the place where **ViewGroup** gets to decide where children can be located by calling :
 
 ```Java
@@ -845,17 +889,19 @@ And to do so, there are two approaches :
 
 Both approaches are feasible, but depends on the property of the components drawn.
 
->For instance, if all components here are static, and no interactions are required. Then it would be easier to use `canvas.translate` to get rid of the top and right paddings once and for all.
-><br><br> But, if you have components that are dynamic or interactive, then it might be better to simply calculate the actual bounds instead.
-<br>
-Because usually interactive components required extra calculations to figure out its final destination.
+><br>For instance, if all components here are static, and no interactions are required. Then it would be easier to use `canvas.translate` to get rid of the top and right paddings once and for all.
+><br> But, if you have components that are dynamic or interactive, then it might be better to simply calculate the actual bounds instead.
+><br>Because usually interactive components required extra calculations to figure out its final destination.
+> <br><br/>
 
 In our case, we used the second approach.
 
 Let's go through the `onDraw` process step by step.
 
->**Preparing basic variables**
+><br>**Preparing basic variables**
 ><br>First, we will start by calculating the paddings on both the view and the bar.
+> <br><br/>
+
 
 ```Java
 @Override
@@ -865,6 +911,7 @@ protected void onDraw(Canvas canvas) {
     // After API 17, you can call getPaddingStart() and getPaddingEnd() instead, the API used in this project is 16.
     float startPadding = (float) getPaddingLeft();
     float endPadding = (float) getPaddingRight();
+
     if (ViewCompat.getLayoutDirection(this) == ViewCompat.LAYOUT_DIRECTION_RTL) {
         startPadding = (float) getPaddingRight();
         endPadding = (float) getPaddingLeft();
@@ -879,11 +926,12 @@ protected void onDraw(Canvas canvas) {
 }
 ```
 
->**Drawing the labels at both ends**
+><br>**Drawing the labels at both ends**
 ><br>Next, we will start by drawing the labels at both ends.
 ><br><br>Drawing a text takes two steps :
 > 1. Find the width and height of the Text to be drawn using `textPaint.getTextBounds`
 > 2. Find the coordinate of the **baseline** (instead of finding the coordinate of the top-left corner).
+> <br><br/>
 
 ```Java
 // 1. Use getTextBounds to find the width of the Text.
@@ -902,38 +950,46 @@ _textPaint.getTextBounds(
 float endValueWidth = _textRect.width();
 
 // 2. Locate the baseline of the text and draw the text
+
+float baseline = (float)((getBottom() - getTop() - getMeasuredHeight()) / 2f + (float) getMeasuredHeight() - getPxFromDp(BAR_TO_TEXT_MARGIN) - textHeight);
+
 canvas.drawText(
     String.valueOf(_startValue),
     (barEndPadding < startValueWidth / 2 ?
         getPxFromDp(EXTRA_SPACE):
         barEndPadding - 0.5f * startValueWidth) + startPadding,
-    (float) (getMeasuredHeight() - getPaddingBottom()),
-    _textPaint);
+     baseline,
+     _textPaint);
 
 canvas.drawText(
     String.valueOf(_endValue),
     (float) getMeasuredWidth() - endPadding - (barEndPadding < endValueWidth ?
          endValueWidth + getPxFromDp(EXTRA_SPACE):
          barEndPadding * 2 - (barEndPadding * 2 - endValueWidth) / 2),
-(float) (getMeasuredHeight() - getPaddingBottom()),_textPaint);
+    baseline,
+    _textPaint);
 ```
-> The second step might looks complicated, let me try to walk you though the drawing of the **_startValue**.
+
+><br> The second step might looks complicated, let me try to walk you though the drawing of the **_startValue**.
 > <br><br> a `canvas.drawText` method required 4 parameters :
 > 1. The `x` value of x-axis, this is the value where the text will start to draw.
 > 2. The `y` value of y-axis, this is where the **baseline** is located.
 > 3. The text to be drawn.
 > 4. The `TextPaint` that is responsible for drawing the text.
+> <br><br/>
 
 Here is how we find the `x` value :
 
-> If the width of **_startValue** is less than the **barEndPadding** (`thumbSize / 2`), then the text won't be centered to the thumb, and it will be placed as close to the end as possible (**startPadding**).
+> <br>If the width of **_startValue** is less than the **barEndPadding** (`thumbSize / 2`), then the text won't be centered to the thumb, and it will be placed as close to the end as possible (**startPadding**).
 > >The reason why the end padding is `thumbSize / 2`, is because when we make the bar line rounded cap and the stroke width the same as the thumb size, then it will create a rounded edge at the endings with the same radius as the thumb.
 >
 >  Else, the text will be centered with the starting point of the line, which is located at `startPadding + (barEndPadding - 0.5 * endValueWidth)`
+> <br><br/>
 
 As to find `y` value, I think you can figure it out.
 
 Also, the code above will be wrapped inside a if statement :
+
 ```Java
 float textHeight = 0;
 if (_shouldShowBottomValue) {
@@ -948,11 +1004,13 @@ if (_shouldShowBottomValue) {
 With the text drawn, we can now draw the bar.
 
 ##### Bar
+
 <img class="centerH" src="/images/posts/jekyll/2022-09-21-android-custom-view-two-way-slider-v1-idle-structure.png"/>
 
 <br>
 
-> Based on the design, the bar is placed above the end points text that we drawn above.
+><br> Based on the design, the bar is placed above the end points text that we drawn above.
+><br><br/>
 
 Instead of making a dynamic value to define the spacing or margin between the text and the bar, we used a constant :
 
@@ -960,36 +1018,43 @@ Instead of making a dynamic value to define the spacing or margin between the te
 static final int BAR_TO_TEXT_MARGIN = 3;
 ```
 
-> However, if we want to get the location of the bar on the y-axis, it's easier to find the bar bottom and subtract our way to the center of the bar.
+><br> However, if we want to get the location of the bar on the y-axis, it's easier to find the bar bottom and subtract our way to the center of the bar.
+><br><br/>
 
 The bottom of the bar can be found :
+
 ```Java
 float barBottom = (getBottom() - getTop() - getMeasuredHeight()) / 2f + (float) getMeasuredHeight();
 ```
 
 As for the center of the bar, we need to take into account the stroke width :
+
 ```Java
 float barCenterY = barBottom - getPaddingBottom() - _barPaint.getStrokeWidth() / 2f;
 ```
 
 And if the bottom text is to be drawn, we also need to take the text height and margin into account :
+
 ```Java
 if (_shouldShowBottomValue) {
   barCenterY -= (textHeight + getPxFromDp(BAR_TO_TEXT_MARGIN));
 }
 ```
 
-> With the `y` location found, we need to figure out the `x` location of the bar, as well as the `length` of the bar.
+><br> With the `y` location found, we need to figure out the `x` location of the bar, as well as the `length` of the bar.
+><br><br/>
 
 Obviously, the `x` location is equals to the `startPadding + barEndPadding`.
 
 As for the length, we can calculate it from the very end and inwards :
+
 ```java
 // the formula is expanded just to make it clear to understand
 float barLength = getMeasuredWidth() - barEndPadding - endPadding -  startPadding - barEndPadding;
 ```
 
 We will also save the Rect of the bar for calculating position of the thumb later.
+
 ```Java
 _barRect.set( barEndPadding + startPadding,
                 barCenterY,
@@ -998,6 +1063,7 @@ _barRect.set( barEndPadding + startPadding,
 ```
 
 So at the end here is the code for drawing the bar :
+
 <details>
 <summary><b>Code for drawing the Bar </b></summary>
 
@@ -1027,20 +1093,23 @@ canvas.drawLine(
 We are almost done with the drawings, next we will draw the thumb.
 
 ##### Display the Thumbs & Selected Range
-> In order to draw a thumb, we need to think of the following questions:
+
+><br> In order to draw a thumb, we need to think of the following questions:
 > 1. Where exactly the thumb should be?
 > 2. What value does it represent?
 > 3. Can we easily find the proper position when given a value or vice versa ?
 > 4. Would I be able to get the same value if configuration has changed ? (the slider could be different length)
+> <br><br/>
 
 Let's walk it through on how to solve all these questions.
 
 The first thing that came in mind when dealing with these questions was :
-> I can simply solve them using **percentage**
+><br> I can simply solve them using **percentage**
+><br><br/>
 
 Is that also how you think ?
 
-Well, you are on the right track, however, a **percentage** usually means we need to divide the bar into a constant of **100** sections, which <u>wouldn't work</u>.
+Well, you are on the right track, however, a **percentage** usually means we need to divide the bar into a constant of **100** sections, which **<u>wouldn't work</u>**.
 
 Because, a slider usually returns value **continuously**.
 <br>Meaning, the bar can be divided into as many sections as needed or allowed.
@@ -1069,15 +1138,20 @@ int calculateThumbStep(float thumbCenter) {
 ```
 
 And to find the location of the thumb along the bar based on the step it is on, we can do something similar :
+
 ```
 The Thumb Location = (Step of the Thumb) / (Total Number of Steps) * (Length of the Bar)
 ```
 
 This seems reasonable, however, we need to be caution when dealing with float calculations due to its nature of being [inconsistent](https://learn.microsoft.com/en-us/cpp/build/why-floating-point-numbers-may-lose-precision?view=msvc-170).
-> PS : I didn't use `BigDecimal` when calculating the step because the result will returns an `int`, so it doesn't need that kind of accuracy.
+
+><br> PS : I didn't use `BigDecimal` when calculating the step because the result will returns an `int`, so it doesn't need that kind of accuracy.
+><br><br/>
 
 So we will convert all values into `BigDecimal` instead.
-<br>Also, don't forget to make sure the thumb must stay within the bar.
+
+Also, don't forget to make sure the thumb must stay within the bar.
+
 ```Java
 float calculateThumbXPosition(int thumbPosition, float barWidth, float startPadding) {
 
@@ -1103,10 +1177,11 @@ float calculateThumbXPosition(int thumbPosition, float barWidth, float startPadd
 }
 ```
 
-> Now that the thumb location can be calculated, we can now draw the thumbs.
+><br> Now that the thumb location can be calculated, we can now draw the thumbs.
 > <br>But before diving in, we need to keep in mind the thumb is movable.
 > <br> Meaning, when the thumb is being moved by the user, we should let it go as it pleased, just to make sure it stays within the bar.
-> <br><br> But once user stop moving it, it has to snap to the closest value.
+> <br> But once user stop moving it, it has to snap to the closest value.
+> <br><br/>
 
 ```Java
 // Make sure the thumb will snap to the closest value
@@ -1131,7 +1206,8 @@ thumbOriginX = _thumbToCenter - _thumbSize / 2;
 _thumbTo.setRectF(thumbOriginX, barCenterY - _thumbSize / 2, thumbOriginX + _thumbSize, barCenterY + _thumbSize / 2);
 ```
 
-> With the thumbs located, we can first draw the line connecting them, such that it won't be on top of the thumb.
+><br> With the thumbs located, we can first draw the line connecting them, such that it won't be on top of the thumb.
+><br><br/>
 
 ```Java
 float x0 = _thumbFromCenter;
@@ -1144,7 +1220,9 @@ if (x0 > x1) {
 canvas.drawLine(x0, barCenterY, x1, barCenterY, _selectedRangePaint);
 ```
 
-> Similarly, we want the thumb that is moving to be on the top :
+><br> Similarly, we want the thumb that is moving to be on the top :
+><br><br/>
+
 ```Java
 if (_thumbFrom.isMoving() || _lastThumbMoved == _thumbFrom) {
     canvas.drawOval(_thumbTo.rect, _thumbTo.paint);
@@ -1154,12 +1232,15 @@ if (_thumbFrom.isMoving() || _lastThumbMoved == _thumbFrom) {
     canvas.drawOval(_thumbTo.rect, _thumbTo.paint);
 }
 ```
+
 Thank God you've made it this far, we are nearly done with the `onDraw` method.
 
 ##### Showing the Value Label
-> So far, you must be wondering why we need to keep the rect of **_thumbFrom** and **_thumbTo**, well this is why.
-> <br><br> In order to draw the Value Label, we have to know the exact location of the thumb.
+
+><br> So far, you must be wondering why we need to keep the rect of **_thumbFrom** and **_thumbTo**, well this is why.
+> <br> In order to draw the Value Label, we have to know the exact location of the thumb.
 > <br> Not only because it is located on top of the thumb, but also because we have to adjust the the rectangular shape portion when approaching the endings.
+><br><br/>
 
 To draw the label, we need the followings :
 1. the Canvas
@@ -1169,9 +1250,11 @@ To draw the label, we need the followings :
 5. the start and end padding of the View (boundary)
 
 We will define a method to take all these in :
+
 ```Java
 void drawValueLabelForThumb(Canvas canvas, RectF thumbRect, String value, int color, float startPadding, float endPadding) {}
 ```
+
 <details>
 <summary><b>Here is the full code </b></summary>
 
@@ -1248,8 +1331,9 @@ void drawValueLabelForThumb(Canvas canvas, RectF thumbRect, String value, int co
 <br>
 Let's take a look at what `drawValueLabelForThumb` does.
 
->**Getting the Value Width**
+><br>**Getting the Value Width**
 ><br> If full precision is to be shown, then 0 will be appended at the end when needed.
+><br><br/>
 
 ```Java
 if (_showFullPrecision) {
@@ -1265,13 +1349,15 @@ if (_showFullPrecision) {
 _textPaint.getTextBounds(value, 0, value.length(), _textRect);
 ```
 
-> **Define the Arrow**
+><br> **Define the Arrow**
 > <br>We will define the points that are needed to draw the arrow as follows :
+> <br><br/>
 
 ```java
 float thumbSize = _thumbSize;
 // BUBBLE_TO_BAR_DISTANCE = 10;
 float labelToBarDistance = getPxFromDp(BUBBLE_TO_BAR_DISTANCE);
+
 _arrowPointers[0].set(thumbRect.centerX() - thumbSize /2f, thumbRect.top - labelToBarDistance);
 _arrowPointers[1].set(thumbRect.centerX(), thumbRect.top);
 _arrowPointers[2].set(thumbRect.centerX() + thumbSize /2f, thumbRect.top - labelToBarDistance);
@@ -1281,8 +1367,9 @@ Basically, the center point is right above the thumb, whereas the two adjacent p
 
 Finally, we just need to define the rectangular part of the label.
 
-> **Defining the Rectangular Shape**
-> <br><br>It will be defined similar to `Rect`, we just find its **left**, **right**, **top** and **bottom**
+><br> **Defining the Rectangular Shape**
+> <br>It will be defined similar to `Rect`, we just find its **left**, **right**, **top** and **bottom**
+> <br><br/>
 
 To find the left of the label, we need to check if the label will be drawn out of the view when it is on the far left of the bar. We can use the following to do the checking :
 
@@ -1309,7 +1396,8 @@ float valueLabelLeft = _textRect.width()/2f + getPxFromDp(BUBBLE_HORIZONTAL_PADD
         thumbRect.centerX() - _textRect.width()/2f - getPxFromDp(BUBBLE_HORIZONTAL_PADDING);
 ```
 
-> If the label is sticking to the left border, then we also need to make sure the left most point of the arrow is the same value as `valueLabelLeft`.
+><br> If the label is sticking to the left border, then we also need to make sure the left most point of the arrow is the same value as `valueLabelLeft`.
+><br><br/>
 
 ```Java
 if (valueLabelLeft == _labelPaint.getStrokeWidth() + startPadding) {
@@ -1318,14 +1406,17 @@ if (valueLabelLeft == _labelPaint.getStrokeWidth() + startPadding) {
 }
 ```
 
-> The top and bottom of the label are easy to calculate since they won't be affected by the the border :
-> ```Java
-> float valueLabelBottom = thumbRect.top - labelToBarDistance;
+><br> The top and bottom of the label are easy to calculate since they won't be affected by the the border :
+><br><br/>
+
+```Java
+float valueLabelBottom = thumbRect.top - labelToBarDistance;
 float valueLabelTop = valueLabelBottom - getPxFromDp(BUBBLE_VERTICAL_PADDING) * 2 - _textRect.height();
 ```
 
 Now all is left is to find the **right** border of the label.
-<br> Since we already found `valueLabelLeft`, then finding `valueLabelRight` should be a piece of cake.
+
+Since we already found `valueLabelLeft`, then finding `valueLabelRight` should be a piece of cake.
 
 Unfortunately, that's being too optimistics.
 
@@ -1336,17 +1427,20 @@ valueLabelLeft + _textRect.width() + getPxFromDp(BUBBLE_HORIZONTAL_PADDING) * 2 
 ```
 
 If it reaches the end padding, we will simply make the right border to be :
+
 ```Java
 getMeasuredWidth() - endPadding - _labelPaint.getStrokeWidth()
 ```
 
 Otherwise, it should be equals to :
+
 ```Java
 valueLabelLeft + _textRect.width() + getPxFromDp(BUBBLE_HORIZONTAL_PADDING) * 2
 ```
 Oh, and don't forget when the label reaches the far end, the corresponding point on the arrow should also shift along it.
 
-> Putting them together, we will get :
+><br> Putting them together, we will get :
+><br><br/>
 
 ```Java
 float valueLabelRight = valueLabelLeft + _textRect.width() + getPxFromDp(BUBBLE_HORIZONTAL_PADDING) * 2 > getMeasuredWidth() - endPadding ?
@@ -1358,7 +1452,8 @@ if (valueLabelRight == getMeasuredWidth() - _labelPaint.getStrokeWidth() - endPa
     _arrowPointers[2].set(valueLabelRight, _arrowPointers[2].y);
 }
 ```
-> One final step is to draw it out :
+><br> One final step is to draw it out :
+><br><br/>
 
 ```Java
 _valueLabelPath.moveTo(_arrowPointers[0].x, _arrowPointers[0].y);
@@ -1373,8 +1468,10 @@ _valueLabelPath.close();
 canvas.drawPath(_valueLabelPath, _labelPaint);
 canvas.drawText(value, valueLabelLeft + getPxFromDp(BUBBLE_HORIZONTAL_PADDING), valueLabelBottom - getPxFromDp(BUBBLE_VERTICAL_PADDING), _textPaint);
 ```
-> **Calling of `drawValueLabelForThumb`**
+
+><br> **Calling of `drawValueLabelForThumb`**
 ><br> This function is called inside the `onDraw` method, right after drawing the thumbs. Whenever the thumb is about to move or is currently moving.
+><br/>
 
 ```Java
 if (_thumbTo.isMoving()) {
@@ -1387,9 +1484,12 @@ if (_thumbFrom.isMoving()) {
     drawValueLabelForThumb(canvas, _thumbFrom.rect, String.valueOf(getFromValue()), _thumbFrom.getColor(), startPadding, endPadding);
 }
 ```
+
 ##### Showing Ticks
-> Ticks are labels indicating the step on the slider.
+
+><br> Ticks are labels indicating the step on the slider.
 > <br>It's quite simple, so no explanation will be provided.
+> <br/>
 
 ```Java
 if (_shouldShowTick && getNumberOfSteps() != DEFAULT_NUMBER_OF_STEPS && getNumberOfSteps() > 2 && barLength / getNumberOfSteps() > getPxFromDp(3)) {
@@ -1432,15 +1532,19 @@ interface Listener {
 Next, let's take a look what happen when user interacts.
 
 ##### onTouchEvent
-> The 4 events that we are interested in are :
+
+><br> The 4 events that we are interested in are :
 > 1. MotionEvent.**ACTION_DOWN**
 > 2. MotionEvent.**ACTION_MOVE**
 > 3. MotionEvent.**ACTION_UP**
 > 4. MotionEvent.**ACTION_CANCEL**
+> <br/>
 
 ###### Action Down
-> Here is where we check if the touch event happens inside the thumbs.
+
+><br> Here is where we check if the touch event happens inside the thumbs.
 > <br>If it is, then we need to set up the flags, so the canvas can be drawn properly.
+> <br/>
 
 ```Java
 case MotionEvent.ACTION_DOWN:
@@ -1467,53 +1571,57 @@ case MotionEvent.ACTION_DOWN:
 Returning `true` means we will deal with this interaction manually.
 
 ###### Action Move
-> Here is where we calculate the new value and feedback to the listener.
-><br><br><b>Note</b>
-><br>We also need to make sure the thumb should never move out of the bar.
 
- ```Java
- case MotionEvent.ACTION_MOVE:
-     if (_thumbFrom.isMoving() || _thumbTo.isMoving()) {
+><br> Here is where we calculate the new value and feedback to the listener.
+>**<br>Note**
+>We also need to make sure the thumb should never move out of the bar.
+><br/>
 
-         if (_thumbFrom.isMoving()) {
-             _thumbFromCenter = x;
-             if (_thumbFromCenter < _barRect.left) {
-                 _thumbFromCenter = _barRect.left;
-             } else if (_thumbFromCenter > _barRect.right) {
-                 _thumbFromCenter = _barRect.right;
-             }
-             // save thumb location
-             _thumbFromStep = calculateThumbStep(_thumbFromCenter);
-         }
+```Java
+case MotionEvent.ACTION_MOVE:
+   if (_thumbFrom.isMoving() || _thumbTo.isMoving()) {
 
-         if (_thumbTo.isMoving()) {
-             _thumbToCenter = x;
-             if (_thumbToCenter < _barRect.left) {
-                 _thumbToCenter = _barRect.left;
-             } else if (_thumbToCenter > _barRect.right) {
-                 _thumbToCenter = _barRect.right;
-             }
-             // save thumb location
-             _thumbToStep = calculateThumbStep(_thumbToCenter);
-         }
+       if (_thumbFrom.isMoving()) {
+           _thumbFromCenter = x;
+           if (_thumbFromCenter < _barRect.left) {
+               _thumbFromCenter = _barRect.left;
+           } else if (_thumbFromCenter > _barRect.right) {
+               _thumbFromCenter = _barRect.right;
+           }
+           // save thumb location
+           _thumbFromStep = calculateThumbStep(_thumbFromCenter);
+       }
 
-         if (_l != null) {
-             _l.onSliderMoved(getFromValue(), getToValue());
-         }
+       if (_thumbTo.isMoving()) {
+           _thumbToCenter = x;
+           if (_thumbToCenter < _barRect.left) {
+               _thumbToCenter = _barRect.left;
+           } else if (_thumbToCenter > _barRect.right) {
+               _thumbToCenter = _barRect.right;
+           }
+           // save thumb location
+           _thumbToStep = calculateThumbStep(_thumbToCenter);
+       }
 
-         // performClick is mainly used for people who need accessibility.
-         if (!_thumbTo.isMoving() && !_thumbFrom.isMoving()) {
-             performClick();
-         }
+       if (_l != null) {
+           _l.onSliderMoved(getFromValue(), getToValue());
+       }
+
+       // performClick is mainly used for people who need accessibility.
+       if (!_thumbTo.isMoving() && !_thumbFrom.isMoving()) {
+           performClick();
+       }
 
 
-         postInvalidate();
-         return true;
-     }
- ```
+       postInvalidate();
+       return true;
+   }
+```
 
- ###### Action Up / Action Cancel
- > Last but not least, we need to make sure whenever user finishes with interacting with the slider, we need to reset all flags.
+###### Action Up / Action Cancel
+
+><br> Last but not least, we need to make sure whenever user finishes with interacting with the slider, we need to reset all flags.
+><br/>
 
  ```java
  case MotionEvent.ACTION_UP:
@@ -1533,7 +1641,8 @@ Will it be the same value as before ? Or will the thumbs be in the default state
 Let's find out and see how we fix it.
 
 ### Configuration change
-> Here is what happen when configuration changes occur :
+><br> Here is what happen when configuration changes occur :
+><br/>
 
 ![](/images/posts/jekyll/2022-09-21-android-custom-view-two-way-slider-v1-config-change.gif)
 
@@ -1587,7 +1696,9 @@ static final String THUMB_FROM_STEP = "Thumb From Step";
 ```
 
 #### XML
-> So far, all we did is programmatically create and customize the slider, wouldn't it be easier if user can customize it using XML ?
+
+><br> So far, all we did is programmatically create and customize the slider, wouldn't it be easier if user can customize it using XML ?
+><br/>
 
 From what we've done so far, we can gether up all the properties that can be customized by users :
 
@@ -1614,7 +1725,9 @@ Listener l;
 ```
 
 Now, we just need to convert these into `attrs.xml`.
-> I've added some more.
+
+><br> I've added some more.
+><br/>
 
 ```XML
 <?xml version="1.0" encoding="utf-8"?>
@@ -1812,13 +1925,31 @@ With these setup, user can now define properties in XML :
 ```
 
 ### Bonus : Publishing a Library
-> Now that we have created our own very first custome view, perhaps it would be nice if we make it a library so other people can use it.
+
+><br> Now that we have created our own very first custome view, perhaps it would be nice if we make it a library so other people can use it.
+><br/>
+
+First, we need to decide where to release our library.
+
+The two most popular repositories used are :
+
+1. **[JitPack](https://docs.jitpack.io/intro/)**
+
+2. **[Maven Central](https://maven.apache.org/repository/index.html)**
+   an open source build system, developed by the Apache foundation and mostly used for java projects [[medium](https://proandroiddev.com/publishing-a-maven-artifact-1-3-glossary-bc0068a440e0)].
 
 
+
+The first thing we need to do in order for us to publish our library is to **push it onto GitHub**.
+
+Then, we need to choose where to publish our library.
+
+The two most popular
 
 
 ### Future
-> By the time I finished this post, Google is now pushing for everyone to learn and use **Jetpack Compose**, a framework that is meant to get rid of the tedious code in XML and not only reduces the time to create but also reduces memory leakage from Views.
+><br> By the time I finished this post, Google is now pushing for everyone to learn and use **Jetpack Compose**, a framework that is meant to get rid of the tedious code in XML and not only reduces the time to create but also reduces memory leakage from Views.
+><br/>
 
 So I guess the next project is to convert this code into **Jetpack Compose**.
 

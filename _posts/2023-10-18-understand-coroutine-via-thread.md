@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  Kotlinx.Coroutine - 從 Thread 看 Coroutine
-date:   2022-08-08 16:15:07 +0800
+date:   2023-10-18 19:14:22 +0800
 categories: [coroutine, android, intermediate]
 ---
 # 序文
@@ -2423,7 +2423,7 @@ inline fun resumeCancellableWith(
 }
 ```
 
-現在我們知道 Coroutine 是如何實作執行緒的轉換了。
+現在我們知道 Coroutine 是如何在執行緒上執行作業， 同時也知道 Coroutine 可以通過 `withContext` 進行執行緒的轉換。
 
 
 目前就先談到這，有機會再談談 Flow 是時麼吧。

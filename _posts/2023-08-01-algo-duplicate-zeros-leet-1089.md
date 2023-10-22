@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Algorithm：LeetCode 1089 Duplicate Zeros
+title: Algorithm：Longest Common Subsequence
 date: 2023-08-01 00:40:20 +08:00
 categories: [Algorithm]
 use_math: true
@@ -31,7 +31,7 @@ Explanation: After calling your function, the input array is modified to: [1,2,3
 
 **Constraints**:
 
-1 <= `arr.length` <= $10^4$ <br>
+1 <= `arr.length` <= $10^4$
 0 <= `arr[i]` <= 9
 
 ## 理解題目
@@ -217,7 +217,7 @@ $$A_{0,m} = [0, 0, 0, 0, 0 ... 0]$$
 ||Complexity|
 |:--|:--:|
 |Space   | $O(m)$ 或 $O(1)$  |
-|Time   | $O(1)$ 不變  |
+|Time   |   |
 
 按照題目的要求，當我們將新的 $0$ 插入後，多出來的值都會被拋棄。
 所以 $A$ 與最後陣列 $A'$ 的關係如下：
@@ -407,20 +407,23 @@ class Solution {
     fun duplicateZeros(arr: IntArray): Unit {
         var lastIndex = arr.size - 1
         var zeroCounter = 0
-        var i = -1
+        var i = 0
 
-        while(i < lastIndex) {
-            i++
+        while(i <= lastIndex) {
             if(arr[i] == 0) {
                 lastIndex --
                 zeroCounter ++
             }
+            i++
         }
 
+        // 這才是正確 i
+        i --
+
         if (lastIndex < i) {
-            arr[arr.size - 1] = 0
-            zeroCounter --
-        } 
+          arr[arr.size - 1] = 0
+          zeroCounter --
+        }
 
         while(zeroCounter > 0) {
           if (arr[lastIndex] == 0) {
@@ -444,10 +447,9 @@ class Solution {
     fun duplicateZeros(arr: IntArray): Unit {
         var lastIndex = arr.size - 1
         var zeroCounter = 0
-        var i = -1
+        var i = 0
 
-        while(i < lastIndex) {
-            i++
+        while(i <= lastIndex) {
             if(arr[i] == 0) {
                 lastIndex --
                 zeroCounter ++
@@ -455,8 +457,12 @@ class Solution {
                 if (lastIndex < i) {
                   arr[arr.size - 1] = 0
                   zeroCounter --
+                  break
+                } else if (lastIndex == i) {
+                  break
                 }
             }
+            i++
         }
 
         while(zeroCounter > 0) {

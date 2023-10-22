@@ -143,8 +143,9 @@ public open class ViewModelProvider
 Let's take a closer look at what each parameter is and what they do.
 
 #### ViewModelStore
->A **ViewModelStore** is a class that help store **ViewModel**s in a **HashMap**.
+><br>A **ViewModelStore** is a class that help store **ViewModel**s in a **HashMap**.
 ><br> So this is the place that keeps our **ViewModel** alive.
+><br><br/>
 
 ```java
 private final HashMap<String, ViewModel> mMap = new HashMap<>();
@@ -170,7 +171,7 @@ It's similar here, but the naming convension will follow the **Java Language Spe
 Classes that holds a **ViewModelStore** must also implement the **ViewModelStoreOwner** interface.
 
 ##### ViewModelStoreOwner
->This is a SAM interface
+>This is a **SAM** interface
 ```Java
 @NonNull
 ViewModelStore getViewModelStore();
@@ -217,9 +218,9 @@ In that case, we will have to create a subclass.
 But first, let's take a quick look at what **CreationExtras** is.
 
 #### CreationExtras
-> **CreationExtras** is an abstract class for storing data.
-> <br><br>
+> <br>**CreationExtras** is an abstract class for storing data.
 > What's interesting is that it uses generic as a type checker.
+> <br><br/>
 
 ```Java
 public abstract class CreationExtras internal constructor() {
@@ -411,7 +412,7 @@ This is were **LiveData** comes in to play.
 
 Simply put it, a **LiveData** allow **LifecycleOwner** to observe the value stored in a **MutableLiveData**.
 
-Whenever the value in a **LiveData** changes, and **LifecycleOwner** remains active and not destroyed, it will notifies it the change.  
+Whenever the value in a **LiveData** changes, and **LifecycleOwner** remains active and not destroyed, it will notifies it the change.
 
 If you feel like to dig in deeper, please check out this [post]().
 

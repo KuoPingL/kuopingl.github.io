@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Simple Player 1 - Query 解說
+date: 2023-09-16 07:51:45 +08:00
 categories: [Projects]
 use_math: true
 keywords: android, project, mediaPlayer

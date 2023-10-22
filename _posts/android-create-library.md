@@ -11,37 +11,34 @@ Before we started, let's straighten up some of the concepts.
 #### What is a Library ?
 
 A library is a collection of **reusable** code that is meant to solve a common problem.
-<br>
 
 An example would be :
 
-> <u>**[RxJava](https://github.com/ReactiveX/RxJava)**</u>
+><br> <u>**[RxJava](https://github.com/ReactiveX/RxJava)**</u>
 > <br>a Java VM implementation of Reactive Extensions: a library for composing asynchronous and event-based programs by using observable sequences.
+><br><br/>
 
 Another term that is similar to library is called **Framework**, which is also a set of reusable code written to solve common problems.
 
-**Now, try answering this :**
-<br>What are the differences between a **library** and a **framework**?
+**Now tell me**
+What are the differences between a **library** and a **framework**?
 
 <details>
 <summary><b>Answer</b></summary>
-<br>
 
-&nbsp;&nbsp;&nbsp;&nbsp;I always consider a **Framework** as a *collection of libraries*.
-<br><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<u>**However, that is not exactly correct**</u>
+Personally, I've always consider a **Framework** as a *collection of libraries*, but *I was wrong*.
 
-> Importing a **library** is like buying an accessory for your car.
-> <br><br>
-> Whereas using a **framework** is like making a car but given blueprints and materials you might need.
+A **library** is like an accessory for your car, you can always
 
-&nbsp;&nbsp;&nbsp;&nbsp;Another way to say it is that a **framework** provides you with a specific resources that you can use to achieve a specific goal.
+A **framework**, on the other hand, is like blueprints and materials that you might need to build a car.
 
-&nbsp;&nbsp;&nbsp;&nbsp;For instance, you can't build a house using a framework specialized for car, instead you will need to import a library that gives you the tools you'll need to build a house.
+Another way to put it is that a **framework** provides you with a specific resources that you can use to achieve a specific goal.
 
-&nbsp;&nbsp;&nbsp;&nbsp;The technical difference lies in the term **inversion of control**.
+For instance, you cannot build a house using a **framework** specialized for car. Instead, you can get tools to convert a car into a house by importing a **library** for house building.
 
-&nbsp;&nbsp;&nbsp;&nbsp;<u><b>[What is IoC ?](https://en.wikipedia.org/wiki/Inversion_of_control)</b></u>
+The technical difference lies in the term **inversion of control**.
+
+<u><b>[What is IoC ?](https://en.wikipedia.org/wiki/Inversion_of_control)</b></u>
 
 > "This inversion of control is sometimes
 named the Hollywood principle, “Do not call us, we call You”"
@@ -86,13 +83,15 @@ By creating modules we can achieve
 - making the app more **Testible**, **Reusable**, **Scalable**
 - easier to **Manage** or **Organized**
 - we can even **Customize Delivery**
-- last but not least, creating modules makes our application module thinner, thus **reduces the overall build time**.
+- and last but not least, creating modules makes our application module thinner, thus **reduces the overall build time**.
 
-> Here's are some great articles on modulization in an application :
-- <u>[this article](https://medium.com/quandoo/a-guide-to-a-modern-android-app-part-1-modularization-and-architecture-9f2aa91b3090)</u> is by [Marcello Galhardo](https://medium.com/@marcellogalhardo) on how creating modules helps them in their app development.
-- <u>[this one](https://ahmad-efati.medium.com/modularization-of-android-applications-based-on-clean-architecture-18dc643e0562)</u> is by  [Ahmad Efati](https://ahmad-efati.medium.com/) on similar topic.
-- and of course, the <u>[official site](https://developer.android.com/topic/modularization)</u>
-- again, last but not least, <u>[How modularization can speed up your Android app’s built time](https://www.freecodecamp.org/news/how-modularisation-affects-build-time-of-an-android-application-43a984ce9968/)</u>
+Here are some articles on how modulization helps application development :
+- [A Guide to a Modern Android App](https://medium.com/quandoo/a-guide-to-a-modern-android-app-part-1-modularization-and-architecture-9f2aa91b3090) by [Marcello Galhardo](https://medium.com/@marcellogalhardo)
+- [Modularization of Android Applications based on Clean Architecture](https://ahmad-efati.medium.com/modularization-of-android-applications-based-on-clean-architecture-18dc643e0562) by  [Ahmad Efati](https://ahmad-efati.medium.com/)
+- <u>[Google](https://developer.android.com/topic/modularization)</u>
+- <u>[How modularization can speed up your Android app’s built time](https://www.freecodecamp.org/news/how-modularisation-affects-build-time-of-an-android-application-43a984ce9968/)</u>
+
+Even though modulization can help us
 
 #### When should we perform Modulization ?
 Modulization is not suitable for every cases.
@@ -262,6 +261,40 @@ Now that we know how to import libraries from various source, let's m
 
 ### Share Remotely
 
+The two most popular repositories used are :
+
+1. **[JitPack](https://docs.jitpack.io/intro/)**
+
+2. **[Maven Central](https://maven.apache.org/repository/index.html)**
+   an open source build system, developed by the Apache foundation and mostly used for java projects [[medium](https://proandroiddev.com/publishing-a-maven-artifact-1-3-glossary-bc0068a440e0)].
+
+We will walkthrough on how to publish our library in both repositories.
+
+#### Maven Central
+
+><br>This is the "standard" way to publish, but it takes more steps.
+><br/>
+
+Before we publish our library, we need to install **Maven** by :
+1. Download apache-maven from [here](https://maven.apache.org/download.cgi)
+2. Install Maven by the steps over [here](https://maven.apache.org/install.html) and check if maven has been installed successfully.
+   **Note:** in the step
+   ```shell
+   export PATH=/opt/apache-maven-3.8.6/bin:$PATH
+   ```
+   you need to use the proper path here you extracted `apache-maven-3.8.6` folder.
+
+At the end, when you enter `mvn -v`, you should be able to see :
+
+```shell
+Apache Maven 3.8.6 (84538c9988a25aec085021c365c560670ad80f63)
+Maven home: /Users/jimmy/Documents/apache-maven-3.8.6
+Java version: 15.0.2,
+vendor: AdoptOpenJDK,
+runtime: /Library/Java/JavaVirtualMachines/adoptopenjdk-15-openj9.jdk/Contents/Home
+```
+
+If you get `command not found`, try closing your terminal and re-open it, allowing it read the updated PATH.
 
 
 ### Extra
@@ -273,7 +306,7 @@ You can create a **Java Archive Resources** ( `jar` ) file.
 
 This can be done using the following command :
 ```shell
-jar cf jar-file input-file(s)  
+jar cf jar-file input-file(s)
 ```
 
 > If you choose **Android library**
