@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  Kotlinx.Coroutine - 從 Thread 看 Coroutine
-date:   2023-10-18 19:14:22 +0800
+date:   2022-08-08 16:15:07 +0800
 categories: [coroutine, android, intermediate]
 ---
 # 序文
@@ -396,7 +396,7 @@ public void execute(Runnable command) {
 我們可以通過方法調用的流程畫出以下 uml ：
 
 <center>
-<img src = "../images/posts/jekyll/android/coroutines/dispatchers/threadpoolexecutor_create_run_worker.png" style="width:70%"/>
+<img src = "/images/posts/jekyll/android/coroutines/dispatchers/threadpoolexecutor_create_run_worker.png" style="width:70%"/>
 </center>
 
 <br>
@@ -543,7 +543,7 @@ public actual object Dispatchers {
 從他們的階層關係發現他們都是所謂的 **CoroutineDispatcher**：
 
 <center>
-<img src = "../images/posts/jekyll/android/coroutines/dispatchers/dispatchers_hierachy.png" style="width:70%"/>
+<img src = "/images/posts/jekyll/android/coroutines/dispatchers/dispatchers_hierachy.png" style="width:70%"/>
 </center>
 
 <br>
@@ -1100,7 +1100,7 @@ val limitedDispatcher = Dispatchers.IO.limitedDispatcher(threadNumber)
 所以只要我們跟著 `LimitedDispatcher.dispatch` 的流程就會發現整個流程是如此：
 
 <center>
-<img src = "../images/posts/jekyll/android/coroutines/dispatchers/dispatchers_io_limit_thread_process.png" style="width:70%"/>
+<img src = "/images/posts/jekyll/android/coroutines/dispatchers/dispatchers_io_limit_thread_process.png" style="width:70%"/>
 </center>
 
 由於 `LimitedDispatcher.run()` 會做兩件事：
@@ -2423,7 +2423,7 @@ inline fun resumeCancellableWith(
 }
 ```
 
-現在我們知道 Coroutine 是如何在執行緒上執行作業， 同時也知道 Coroutine 可以通過 `withContext` 進行執行緒的轉換。
+現在我們知道 Coroutine 是如何實作執行緒的轉換了。
 
 
 目前就先談到這，有機會再談談 Flow 是時麼吧。
