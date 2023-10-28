@@ -396,7 +396,7 @@ public void execute(Runnable command) {
 我們可以通過方法調用的流程畫出以下 uml ：
 
 <center>
-<img src = "../images/posts/jekyll/android/coroutines/dispatchers/threadpoolexecutor_create_run_worker.png" style="width:70%"/>
+<img src = "/images/posts/jekyll/android/coroutines/dispatchers/threadpoolexecutor_create_run_worker.png" style="width:70%"/>
 </center>
 
 <br>
@@ -543,7 +543,7 @@ public actual object Dispatchers {
 從他們的階層關係發現他們都是所謂的 **CoroutineDispatcher**：
 
 <center>
-<img src = "../images/posts/jekyll/android/coroutines/dispatchers/dispatchers_hierachy.png" style="width:70%"/>
+<img src = "/images/posts/jekyll/android/coroutines/dispatchers/dispatchers_hierachy.png" style="width:70%"/>
 </center>
 
 <br>
@@ -1100,7 +1100,7 @@ val limitedDispatcher = Dispatchers.IO.limitedDispatcher(threadNumber)
 所以只要我們跟著 `LimitedDispatcher.dispatch` 的流程就會發現整個流程是如此：
 
 <center>
-<img src = "../images/posts/jekyll/android/coroutines/dispatchers/dispatchers_io_limit_thread_process.png" style="width:70%"/>
+<img src = "/images/posts/jekyll/android/coroutines/dispatchers/dispatchers_io_limit_thread_process.png" style="width:70%"/>
 </center>
 
 由於 `LimitedDispatcher.run()` 會做兩件事：
