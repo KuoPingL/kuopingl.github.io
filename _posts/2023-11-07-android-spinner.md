@@ -246,7 +246,7 @@ public interface OnItemSelectedListener {
 
 由於 AdapterView 只是一個抽象類別，所以他的作用只是為了進行行為上的基礎設定。 而這些設定主要是與選取行為相關：
 
-<details>
+<details markdown=1>
 <summary  markdown='span'><code>handleDataChanged()</code> 被調用時會尋找之前被挑選的物件位置。 若出現選取或取消行為便會調用 <code>checkSelectionChanged()</code> 進行通知</summary>
 
 ```java 
