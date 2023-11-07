@@ -318,8 +318,8 @@ void handleDataChanged() {
 
 </details>
 
-<details>
-<summary> <code>rememberSyncState()</code> - remember enough information to restore the screen state when the data has changed. </summary>
+<details markdown=1>
+<summary  markdown='span'> <code>rememberSyncState()</code> - remember enough information to restore the screen state when the data has changed. </summary>
 
 ```java
 void rememberSyncState() {
@@ -357,8 +357,8 @@ void rememberSyncState() {
 
 </details>
 
-<details>
-<summary> 在 <code>rememberSyncState()</code> 中， 若有資料就會將 <code>mNeedSync</code> 設為 true。 而 <code>findSyncPosition()</code> 會在這個情況下被 <code>handleData()</code> 調用並用來尋找之前所選的選項。雖然說不是什麼特別的方法，但其中的演算法還是可以學習的。基本上就是 Bubble Search，但卻會隨機從任一位置開始往右尋找。 找不到再往左尋找。主要目的就是用機率的方式來加快尋找速度。 </summary>
+<details markdown=1>
+<summary  markdown='span'> 在 <code>rememberSyncState()</code> 中， 若有資料就會將 <code>mNeedSync</code> 設為 true。 而 <code>findSyncPosition()</code> 會在這個情況下被 <code>handleData()</code> 調用並用來尋找之前所選的選項。雖然說不是什麼特別的方法，但其中的演算法還是可以學習的。基本上就是 Bubble Search，但卻會隨機從任一位置開始往右尋找。 找不到再往左尋找。主要目的就是用機率的方式來加快尋找速度。 </summary>
 
 ```java
 int findSyncPosition() {
@@ -445,8 +445,8 @@ int findSyncPosition() {
 
 </details>
 
-<details>
-<summary> <code>checkSelectionChanged()</code> 會通過隱藏的 <code>selectionChanged()</code> 進行立即通知 ( <code>dispatchOnItemSelected()</code> ) 或延後通知 ( <code>post(mSelectionNotifier)</code> ) </summary>
+<details markdown=1>
+<summary  markdown='span'> <code>checkSelectionChanged()</code> 會通過隱藏的 <code>selectionChanged()</code> 進行立即通知 ( <code>dispatchOnItemSelected()</code> ) 或延後通知 ( <code>post(mSelectionNotifier)</code> ) </summary>
 
 ```java 
 void checkSelectionChanged() {
@@ -598,8 +598,8 @@ if ((changed & DRAW_MASK) != 0) {
 
 接下來，我們看看 `onMeasure` 吧。
 
-<details>
-<summary>其實 <code>onMeasure</code> 的實作並不複雜，因為他只會顯示被選取的物件。並不包括 popup。</summary>
+<details markdown=1>
+<summary  markdown='span'>其實 <code>onMeasure</code> 的實作並不複雜，因為他只會顯示被選取的物件。並不包括 popup。</summary>
 
 ```java
 @Override
@@ -693,8 +693,8 @@ protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 
 目前我們看到 AbsSpinner 對 UI 的作用，但其實他也會在得到 Adapter 時進行一些設置喔。
 
-<details>
-<summary>通過 <code>setAdapter(SpinnerAdapter)</code> AbsSpinner 會重新註冊 DataSetObserver，並重設 selected position。 最後再進行 <code>requestLayout()</code> 來啟動 <code>measure</code> 與 <code>draw</code></summary>
+<details markdown=1>
+<summary  markdown='span'>通過 <code>setAdapter(SpinnerAdapter)</code> AbsSpinner 會重新註冊 DataSetObserver，並重設 selected position。 最後再進行 <code>requestLayout()</code> 來啟動 <code>measure</code> 與 <code>draw</code></summary>
 
 ```java
 @Override
@@ -1078,8 +1078,8 @@ protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 }
 ```
 
-<details>
-<summary>相同的，我們來比較 Spinner 的 `measureContentWidth` 與 AppCompatSpinner 的 `compatMeasureContentWidth` 也會發現是一模一樣。</summary>
+<details markdown=1>
+<summary  markdown='span'>相同的，我們來比較 Spinner 的 `measureContentWidth` 與 AppCompatSpinner 的 `compatMeasureContentWidth` 也會發現是一模一樣。</summary>
 
 ```java
 
@@ -1178,8 +1178,8 @@ int compatMeasureContentWidth(SpinnerAdapter adapter, Drawable background) {
 
 </details>
 
-<details>
-<summary>當然， **AbsSpinner** 的 `onMeasure` 也是有類似行為。 但他會處理 padding，並且會確保資料變更已完畢才計算寬與高度。</summary>
+<details markdown=1>
+<summary  markdown='span'>當然， **AbsSpinner** 的 `onMeasure` 也是有類似行為。 但他會處理 padding，並且會確保資料變更已完畢才計算寬與高度。</summary>
 
 ```java
 // AbsSpinner
