@@ -73,6 +73,7 @@ public interface Adapter {
 竟然我們想要暸解 Spinner 我們就專注在 SpinnerAdapter 的實作與運用即可。
 
 ## SpinnerAdapter
+
 ```java 
 public interface SpinnerAdapter extends Adapter {
     public View getDropDownView(int position, View convertView, ViewGroup parent);
@@ -182,7 +183,7 @@ public View getDropDownView(int position, View convertView, ViewGroup parent) {
 ```
 
 
-在看 **Spinner 之前，我們要先看 AbsSpinner 的父類別 **AdapterView<T>** 的結構與運作。
+在看 **Spinner** 之前，我們要先看 AbsSpinner 的父類別 **AdapterView<T>** 的結構與運作。
 
 ## AdapterView<T extends Adapter> 
 
@@ -213,7 +214,9 @@ public AdapterView(Context context, AttributeSet attrs, int defStyleAttr, int de
 ```
 
 除了建構子之外，內部有以下幾個重要的參數。 其中除了 **SelectionNotifier** 外都可以通過 setter/getter 設定與讀取：
+
 |參數|功能|
+|:--|:--|
 |`View mEmptyView`|在沒有資料時顯示的 View|
 |`OnItemSelectedListener mOnItemSelectedListener`<br>`OnItemClickListener mOnItemClickListener`<br>`OnItemLongClickListener mOnItemLongClickListener`|不同方式點擊物件時的監聽者|
 |`SelectionNotifier mSelectionNotifier`|這是一個用來通知 selection event 的 **Runnable**|
@@ -244,7 +247,7 @@ public interface OnItemSelectedListener {
 由於 AdapterView 只是一個抽象類別，所以他的作用只是為了進行行為上的基礎設定。 而這些設定主要是與選取行為相關：
 
 <details>
-<summary><code>handleDataChanged()</code> 被調用時會尋找之前被挑選的物件位置。 若出現選取或取消行為便會調用 <code>checkSelectionChanged()</code> 進行通知</summary>
+<summary  markdown='span'><code>handleDataChanged()</code> 被調用時會尋找之前被挑選的物件位置。 若出現選取或取消行為便會調用 <code>checkSelectionChanged()</code> 進行通知</summary>
 
 ```java 
 void handleDataChanged() {
