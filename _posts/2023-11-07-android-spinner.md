@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Android - Understand Spinner"
-date:   2022-08-08 16:15:07 +0800
+date:   2023-11-07 10:09:58 +0800
 categories: [spinner, android, beginner]
 ---
 
