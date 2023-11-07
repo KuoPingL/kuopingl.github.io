@@ -73,6 +73,7 @@ public interface Adapter {
 竟然我們想要暸解 Spinner 我們就專注在 SpinnerAdapter 的實作與運用即可。
 
 ## SpinnerAdapter
+
 ```java 
 public interface SpinnerAdapter extends Adapter {
     public View getDropDownView(int position, View convertView, ViewGroup parent);
@@ -182,7 +183,7 @@ public View getDropDownView(int position, View convertView, ViewGroup parent) {
 ```
 
 
-在看 **Spinner 之前，我們要先看 AbsSpinner 的父類別 **AdapterView<T>** 的結構與運作。
+在看 **Spinner** 之前，我們要先看 AbsSpinner 的父類別 **AdapterView<T>** 的結構與運作。
 
 ## AdapterView<T extends Adapter> 
 
@@ -213,7 +214,9 @@ public AdapterView(Context context, AttributeSet attrs, int defStyleAttr, int de
 ```
 
 除了建構子之外，內部有以下幾個重要的參數。 其中除了 **SelectionNotifier** 外都可以通過 setter/getter 設定與讀取：
+
 |參數|功能|
+|:--|:--|
 |`View mEmptyView`|在沒有資料時顯示的 View|
 |`OnItemSelectedListener mOnItemSelectedListener`<br>`OnItemClickListener mOnItemClickListener`<br>`OnItemLongClickListener mOnItemLongClickListener`|不同方式點擊物件時的監聽者|
 |`SelectionNotifier mSelectionNotifier`|這是一個用來通知 selection event 的 **Runnable**|
@@ -243,8 +246,8 @@ public interface OnItemSelectedListener {
 
 由於 AdapterView 只是一個抽象類別，所以他的作用只是為了進行行為上的基礎設定。 而這些設定主要是與選取行為相關：
 
-<details>
-<summary><code>handleDataChanged()</code> 被調用時會尋找之前被挑選的物件位置。 若出現選取或取消行為便會調用 <code>checkSelectionChanged()</code> 進行通知</summary>
+<details markdown=1>
+<summary  markdown='span'><code>handleDataChanged()</code> 被調用時會尋找之前被挑選的物件位置。 若出現選取或取消行為便會調用 <code>checkSelectionChanged()</code> 進行通知</summary>
 
 ```java 
 void handleDataChanged() {
@@ -315,8 +318,8 @@ void handleDataChanged() {
 
 </details>
 
-<details>
-<summary> <code>rememberSyncState()</code> - remember enough information to restore the screen state when the data has changed. </summary>
+<details markdown=1>
+<summary  markdown='span'> <code>rememberSyncState()</code> - remember enough information to restore the screen state when the data has changed. </summary>
 
 ```java
 void rememberSyncState() {
@@ -354,8 +357,8 @@ void rememberSyncState() {
 
 </details>
 
-<details>
-<summary> 在 <code>rememberSyncState()</code> 中， 若有資料就會將 <code>mNeedSync</code> 設為 true。 而 <code>findSyncPosition()</code> 會在這個情況下被 <code>handleData()</code> 調用並用來尋找之前所選的選項。雖然說不是什麼特別的方法，但其中的演算法還是可以學習的。基本上就是 Bubble Search，但卻會隨機從任一位置開始往右尋找。 找不到再往左尋找。主要目的就是用機率的方式來加快尋找速度。 </summary>
+<details markdown=1>
+<summary  markdown='span'> 在 <code>rememberSyncState()</code> 中， 若有資料就會將 <code>mNeedSync</code> 設為 true。 而 <code>findSyncPosition()</code> 會在這個情況下被 <code>handleData()</code> 調用並用來尋找之前所選的選項。雖然說不是什麼特別的方法，但其中的演算法還是可以學習的。基本上就是 Bubble Search，但卻會隨機從任一位置開始往右尋找。 找不到再往左尋找。主要目的就是用機率的方式來加快尋找速度。 </summary>
 
 ```java
 int findSyncPosition() {
@@ -442,8 +445,8 @@ int findSyncPosition() {
 
 </details>
 
-<details>
-<summary> <code>checkSelectionChanged()</code> 會通過隱藏的 <code>selectionChanged()</code> 進行立即通知 ( <code>dispatchOnItemSelected()</code> ) 或延後通知 ( <code>post(mSelectionNotifier)</code> ) </summary>
+<details markdown=1>
+<summary  markdown='span'> <code>checkSelectionChanged()</code> 會通過隱藏的 <code>selectionChanged()</code> 進行立即通知 ( <code>dispatchOnItemSelected()</code> ) 或延後通知 ( <code>post(mSelectionNotifier)</code> ) </summary>
 
 ```java 
 void checkSelectionChanged() {
@@ -595,8 +598,8 @@ if ((changed & DRAW_MASK) != 0) {
 
 接下來，我們看看 `onMeasure` 吧。
 
-<details>
-<summary>其實 <code>onMeasure</code> 的實作並不複雜，因為他只會顯示被選取的物件。並不包括 popup。</summary>
+<details markdown=1>
+<summary  markdown='span'>其實 <code>onMeasure</code> 的實作並不複雜，因為他只會顯示被選取的物件。並不包括 popup。</summary>
 
 ```java
 @Override
@@ -690,8 +693,8 @@ protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 
 目前我們看到 AbsSpinner 對 UI 的作用，但其實他也會在得到 Adapter 時進行一些設置喔。
 
-<details>
-<summary>通過 <code>setAdapter(SpinnerAdapter)</code> AbsSpinner 會重新註冊 DataSetObserver，並重設 selected position。 最後再進行 <code>requestLayout()</code> 來啟動 <code>measure</code> 與 <code>draw</code></summary>
+<details markdown=1>
+<summary  markdown='span'>通過 <code>setAdapter(SpinnerAdapter)</code> AbsSpinner 會重新註冊 DataSetObserver，並重設 selected position。 最後再進行 <code>requestLayout()</code> 來啟動 <code>measure</code> 與 <code>draw</code></summary>
 
 ```java
 @Override
@@ -868,10 +871,6 @@ public Spinner(Context context, AttributeSet attrs, int defStyleAttr, int defSty
 }
 ```
 
-
-
-
-
 ## SpinnerPopup
 
 就如之前所說， **SpinnerPopup** 是一個負責顯示 popup 的介面。 想要知道如何實作就需要看看 **DropdownPopup** 與 **DialogPopup** 了。
@@ -957,15 +956,14 @@ private class DropdownPopup extends ListPopupWindow implements SpinnerPopup
 ```
 
 簡簡單單的一行其實含金量很多。 DropdownPopup 其實是由兩個類別組成的：
+
 |類別|功能|
 |:--|:--|
-|**PopupWindow**| 他的主要功能就是客製化並顯示 popup。 而客製化則包括以下：<br>-動畫<br>-anchor 點<br>-背景<br>-ContentView<br>-Elevate<br>等等...|
-|**ListPopupWindow**|這裡包含三個重要參數： **DropDownListView**, |
-|**DropdownPopup**||
+|**PopupWindow**| 他的主要功能就是客製化並顯示 popup。 而客製化則包括以下：<br>-動畫<br>- anchor 點<br>- 背景<br>- ContentView<br>-Elevate<br>等等...|
+|**ListPopupWindow**|這裡包含兩個重要參數： **DropDownListView** 與 **PopupWindow**。<br>他的功能是通過這兩者進行互動與顯示。|
+|**DropdownPopup**|這類別擁有一個 **ListAdapter**，通過他 DropdownPopup 可以取得 itemView 的大小。|
 
-
-
-
+他的作用我們會在 Spinner 的顯示流程中繼續探討。
 
 
 # Spinner 的顯示流程
@@ -1080,8 +1078,8 @@ protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 }
 ```
 
-<details>
-<summary>相同的，我們來比較 Spinner 的 `measureContentWidth` 與 AppCompatSpinner 的 `compatMeasureContentWidth` 也會發現是一模一樣。</summary>
+<details markdown=1>
+<summary  markdown='span'>相同的，我們來比較 Spinner 的 `measureContentWidth` 與 AppCompatSpinner 的 `compatMeasureContentWidth` 也會發現是一模一樣。</summary>
 
 ```java
 
@@ -1180,8 +1178,8 @@ int compatMeasureContentWidth(SpinnerAdapter adapter, Drawable background) {
 
 </details>
 
-<details>
-<summary>當然， **AbsSpinner** 的 `onMeasure` 也是有類似行為。 但他會處理 padding，並且會確保資料變更已完畢才計算寬與高度。</summary>
+<details markdown=1>
+<summary  markdown='span'>當然， **AbsSpinner** 的 `onMeasure` 也是有類似行為。 但他會處理 padding，並且會確保資料變更已完畢才計算寬與高度。</summary>
 
 ```java
 // AbsSpinner
