@@ -871,10 +871,6 @@ public Spinner(Context context, AttributeSet attrs, int defStyleAttr, int defSty
 }
 ```
 
-
-
-
-
 ## SpinnerPopup
 
 就如之前所說， **SpinnerPopup** 是一個負責顯示 popup 的介面。 想要知道如何實作就需要看看 **DropdownPopup** 與 **DialogPopup** 了。
@@ -960,15 +956,14 @@ private class DropdownPopup extends ListPopupWindow implements SpinnerPopup
 ```
 
 簡簡單單的一行其實含金量很多。 DropdownPopup 其實是由兩個類別組成的：
+
 |類別|功能|
 |:--|:--|
-|**PopupWindow**| 他的主要功能就是客製化並顯示 popup。 而客製化則包括以下：<br>-動畫<br>-anchor 點<br>-背景<br>-ContentView<br>-Elevate<br>等等...|
-|**ListPopupWindow**|這裡包含三個重要參數： **DropDownListView**, |
-|**DropdownPopup**||
+|**PopupWindow**| 他的主要功能就是客製化並顯示 popup。 而客製化則包括以下：<br>-動畫<br>- anchor 點<br>- 背景<br>- ContentView<br>-Elevate<br>等等...|
+|**ListPopupWindow**|這裡包含兩個重要參數： **DropDownListView** 與 **PopupWindow**。<br>他的功能是通過這兩者進行互動與顯示。|
+|**DropdownPopup**|這類別擁有一個 **ListAdapter**，通過他 DropdownPopup 可以取得 itemView 的大小。|
 
-
-
-
+他的作用我們會在 Spinner 的顯示流程中繼續探討。
 
 
 # Spinner 的顯示流程
