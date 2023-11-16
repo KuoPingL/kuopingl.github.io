@@ -2,7 +2,6 @@
 layout: post
 title: Simple Player 1.5 - Query 修正
 categories: [Projects]
-use_math: true
 keywords: android, project, mediaPlayer
 ---
 
@@ -37,7 +36,8 @@ keywords: android, project, mediaPlayer
 
 ### 更正方法
 
-更正 `requestStoragePermission`：
+<u>更正 `requestStoragePermission`</u>
+
 ```kotlin
 fun requestStoragePermission(activity: Activity): Boolean {
 
@@ -71,13 +71,13 @@ fun requestStoragePermission(activity: Activity): Boolean {
 解釋：
 我們在 **Manifest** 中新增了 **READ_MEDIA_AUDIO** 的 permission，所以我們也可以在這裡新增需要 request 的 permission 了。
 
-更正 `handleStoragePermissionResult`：
+<u>更正 `handleStoragePermissionResult`</u>
 
 ```kotlin
 fun handleStoragePermissionResult(permissions: Array<out String>,
                                 grantResults: IntArray,
                                 context: AppCompatActivity,
-                                // >>>>>>> 新增 lambda
+                                // >>>>>>> 新增 lambda action
                                 action: () -> Unit
                                 // <<<<<<<<
                                 ) {
