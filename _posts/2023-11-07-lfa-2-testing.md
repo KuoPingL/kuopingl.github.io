@@ -1,11 +1,13 @@
 ---
 layout: post
-title: Achitecture Sample Part 2 - Unit 與 UI 測試
+title: "LFA 2 - Unit 與 UI 測試"
+date: 2023-11-07 21:22:20  +0800
 categories: [Learning From Android]
 keywords: android, sample, architecture, learn, testing
 ---
 
 # 序言
+
 歡迎來到「跟著官方學程式」 ( Learning From Android, **LFA** ) 的第二章。
 
 我們將從 [architecture sample views branch](https://github.com/android/architecture-samples/tree/views) 學習如何用 View ( 不是 Compose 喔 ) 來做到官方推薦的架構。
@@ -21,7 +23,9 @@ keywords: android, sample, architecture, learn, testing
 官方也有提供 [codelab](https://developer.android.com/codelabs/advanced-android-kotlin-training-testing-basics/) 可以讓大家跟著做喔。
 
 # 暸解一下 Android 專案
+
 Android 的專案中，一般會有三個 sources，分別是 ：
+
 - **main**
   main 包含著 app 主要的源碼。 它會由各個 build variants 共享。
 - **androidTest**
@@ -30,8 +34,10 @@ Android 的專案中，一般會有三個 sources，分別是 ：
   這裡放的是本地端的測試， Unit Test。像是一般方法的測試。這些都不需要依賴 Android Framework 或 OS 。
 
 ## 針對性的 Implementation
+
 由於 Android 有至少三種不同的 sources，我們也可以通過 Gradle 進行針對性地載入。
 所以，載入方法也有分成三種：
+
 - **implementation**
   這些函式庫會被大家所共用
 - **androidTestImplementation**
@@ -40,6 +46,7 @@ Android 的專案中，一般會有三個 sources，分別是 ：
   這些則只能被 `test` 所使用
 
 以下是建立專案時會自帶的基本 dependencies：
+
 ```groovy
 // basic libraries
 testImplementation("junit:junit:4.13.2")
@@ -48,13 +55,16 @@ androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1") //Androi
 ```
 
 # The Testing Pyramid
+
 想要進行測試之前，我們需要暸解我們有 3 種不同的 **測試策略** 包括：
+
 - **Scope** ： 覆蓋率
 - **Speed** ：測試的速度
 - **Fidelity** ： 測試的真實性
 
 這三者之間各有取捨。如果我們希望測試能加速，那通常就會偏向失真。
 為此，測試會分成三種：
+
 - **Unit Test**：這裡通常只會測試單一類型的方法，像是 **ViewModel**、 **Utils** 或 **Repository**。可想而知，這些測試並不複雜，所以速度必然很快。但一般情況不會只會調用一個類別的方法，所以會導致失真。
   這些測試會放在 `test` 檔案中。
 
@@ -65,6 +75,7 @@ androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1") //Androi
   這些測試都會是 Instrumental Test，所以會寫在 `androidTest` 中。
 
 這三種測試各有利弊，官方建議他們的比例為：
+
 - **Unit Test** - 70%
 - **Integration Test** - 20%
 - **E2e** - 10%
@@ -73,16 +84,18 @@ androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1") //Androi
 <img src = "https://developer.android.com/static/codelabs/advanced-android-kotlin-training-testing-test-doubles/img/7017a2dd290e68aa_1920.png" style="width=0.7"/>
 </center>
 
-
 接下來我們來看看看如何做不同的測試吧。
 
 # Codelab
 
-首先，我們會看看 [codelab](https://developer.android.com/codelabs/advanced-android-kotlin-training-testing-basics/) 是如何實作測試的，然後再看看 architecture sample 中是如何實作的。
+首先，我們會看看 [codelab](https://developer.android.com/codelabs/advanced-android-kotlin-training-testing-basics/) 是如何實作測試的。
 
-請注意， codelab 中的源碼與 architecture sample 有所不同。
+想要暸解 architecture sample 如何測試的可以自行研究。
+
+請注意， codelab 中的源碼與 architecture sample 有所不同，所以測試的項目也會有所不同。
 
 ## UnitTest : StatisticsUtils
+
 我們先測試 **StatisticsUtils** 的 `getActiveAndCompletedStats` ：
 
 ```kotlin
@@ -133,6 +146,7 @@ class StatisticsUtilsTest {
 也許這個寫法並非那麼容易看得懂，我們可以搭配 [hamcrest](https://hamcrest.org/JavaHamcrest) 或是 [truth](https://truth.dev/)。
 
 ### 搭配 hamcrest
+
 ```groovy
 val hamcrestVersion = "2.2"
 testImplementation ("org.hamcrest:hamcrest:$hamcrestVersion")
@@ -140,12 +154,14 @@ testImplementation ("org.hamcrest:hamcrest-library:$hamcrestVersion")
 ```
 
 然後我們就可以將：
+
 ```kotlin
 assertEquals(result.completedTasksPercent, 0f)
 assertEquals(result.activeTasksPercent, 100f)
 ```
 
 改為：
+
 ```kotlin
 assertThat(result.completedTasksPercent, `is`(0f))
 assertThat(result.activeTasksPercent, `is` (100f))
@@ -159,11 +175,13 @@ import org.junit.Assert.*
 ```
 
 ### 或搭配 truth
+
 ```groovy
 testImplementation ("com.google.truth:truth:1.1.4")
 ```
 
 然後我們便可以將上面的 code 改為：
+
 ```kotlin
 assertThat(result.completedTasksPercent)
     .isEqualTo(0f)
@@ -180,6 +198,7 @@ import com.google.common.truth.Truth.assertThat
 ```
 
 ## UnitTest : TasksViewModel
+
 上面講的是針對方法進行測試，現在我們要談的是針對 **ViewModel** 的測試。
 
 ```kotlin
@@ -211,11 +230,13 @@ allprojects {
 ```
 
 Dependencies 如下：
+
 ```groovy
 androidTestImplementation('androidx.test.espresso:espresso-core:$espressoVersion')
 ```
 
 以下是其他相關的 dependencies：
+
 ```groovy
 dependencies {
     // Core library
@@ -246,6 +267,7 @@ dependencies {
 ```
 
 #### 我們的設定
+
 根據我們的需求，我們所需要的函式庫是：
 
 ```groovy
@@ -258,8 +280,8 @@ testImplementation("androidx.test.ext:junit-ktx:$testJunitVersion")
 
 實際版本可以參考 [官方資料](https://developer.android.com/jetpack/androidx/releases/test)
 
-
 #### 如何使用？
+
 如此一來，我們就可以這樣寫：
 
 ```kotlin
@@ -267,6 +289,7 @@ val tasksViewModel = TasksViewModel(ApplicationProvider.getApplicationContext())
 ```
 
 #### 尚有不足
+
 但這還不夠，因為 **ApplicationProvider** 的 `getApplicationContext` 需要通過 **InstrumentationRegistry** 取得 **Application** ：
 
 ```java
@@ -279,6 +302,7 @@ return (T)
 這時我們需要另一個函式庫 [**Robolectric**](https://robolectric.org/)。
 
 ### Robolectric
+
 另外，我們還需要 **[Robolectric](https://robolectric.org/)**，一個能幫我們通過 JVM 跑模擬測試的函式庫。
 它能為我們模擬 Android 環境，從而免去使用實機或模擬器並加快測試速度。
 
@@ -327,7 +351,9 @@ class TasksViewModelTest
 因為 **AndroidJUnit4** 會將實作會委派 **Robolectric** 來進行，也就是 delegate。
 
 ### 目前的 Gradle
+
 #### build.gradle (Project)
+
 ```groovy
 buildscript {
     ext.kotlinVersion = '1.9.10'
@@ -387,6 +413,7 @@ ext {
 ```
 
 #### build.gradle (Module)
+
 ```groovy
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
@@ -482,7 +509,6 @@ dependencies {
 }
 ```
 
-
 ### addNewTask 的測試 (1)
 
 現在我們 Gradle 已經設定完成，所以現在可以進行 **TasksViewModelTest** 了。
@@ -505,6 +531,7 @@ fun addNewTask_setsNewTaskEvent() {
 此時我們又遇到問題了。當我們調用 `addNewTask` 時，我們需要對 **LiveData** 進行監聽才行。那該怎麼辦呢？
 
 #### LiveData
+
 我們需要使用到另一個函式庫 [AndroidX Arch](https://developer.android.com/jetpack/androidx/releases/arch-core)：
 
 ```groovy
@@ -519,17 +546,19 @@ testImplementation ("androidx.arch.core:core-testing:$archTestingVersion")
 這個函式庫可以提供測試 **LiveData** 所需要的 **Rule**。
 
 #### Rule
-><br>
->Annotates fields that reference rules or methods that return a rule.
-><br>
+
+> <br>
+> Annotates fields that reference rules or methods that return a rule.
+> <br>
 
 這裡所謂的 **Rule** 其實是 **org.junit.rules.TestRule** 或 **org.junit.rules.MethodRule** 的子類別。
 
 ##### TestRule
-><br>
+
+> <br>
 > A TestRule is an alteration in how a test method, or set of test methods, is run and reported
 > A TestRule may add additional checks that cause a test that would otherwise fail to pass, or it may perform necessary setup or cleanup for tests, or it may observe test execution to report it elsewhere.
-><br><br/>
+> <br><br/>
 
 ```java
 public interface TestRule {
@@ -542,6 +571,7 @@ public interface TestRule {
 我們甚至可以設定多個 **Rule** 並以階層的方式執行。
 
 以下是函式庫提供的 **TestRule** 子類別：
+
 - **ErrorCollector**: collect multiple errors in one test method
 - **ExpectedException**: make flexible assertions about thrown exceptions
 - **ExternalResource**: start and stop a server, for example
@@ -551,9 +581,8 @@ public interface TestRule {
 - **Timeout**: cause test to fail after a set time
 - **Verifier**: fail test if object state ends up incorrect
 
-
-
 ##### MethodRule
+
 ```java
 public interface MethodRule {
     Statement apply(Statement base, FrameworkMethod method, Object target);
@@ -561,11 +590,14 @@ public interface MethodRule {
 ```
 
 這與 **TestRule** 差不多，而函式庫所提供的子類別為：
+
 - **JUnitRule**
 - **MockitoRule**
 
 ##### InstantTaskExecutorRule
+
 在這個範例中，我們需要使用的 **Rule** 是 **InstantTaskExecutorRule**。
+
 ```kotlin
 @get:Rule
 var instantExecutorRule = InstantTaskExecutorRule()
@@ -630,8 +662,8 @@ public void executeOnDiskIO(@NonNull Runnable runnable) {
 如此一來，**LiveData** 的資料傳遞都會通過相同的 Thread 進行。 這樣我們才可以監控 **LiveData** 的更新。
 
 ### addNewTask 的測試 (2) -- LiveData
-現在有了 **Rule** 後，我們可以正式針對 **LiveData** 進行測試了。
 
+現在有了 **Rule** 後，我們可以正式針對 **LiveData** 進行測試了。
 
 現在我們想要測試是否可以通過 `addNewTask` 真的創建新的 **Event**。
 由於 `addNewTask` 更新的是 `newTaskEvent: LiveData<Event<Unit>>`。所以我們需要看看如何最 **LiveData** 進行測試。
@@ -669,7 +701,6 @@ fun addNewTask_setsNewTaskEvent() {
 ```
 
 當中的 `observer` 只是為了讓 **LiveData** 知道有監控的人，這樣才會收到 `data` 的 `onChanged`。
-
 
 #### 簡化 boilerplate
 
@@ -715,6 +746,7 @@ fun <T> LiveData<T>.getOrAwaitValue(
 
 這裡的源碼看似複雜但其實行為很簡單。
 `getOrAwaitValue` 會有以下行為：
+
 1. 建立一個監控 LiveData 的 **Observer**。
    他會在收到新的 data 時將自己移除。
 2. 建立 **CountDownLatch**，並預設 count 為 1。
@@ -755,6 +787,7 @@ class TasksViewModelTest {
 ## setFilterAllTasks 的測試
 
 這次我們需要測試 **Filter** 的更改是否會會成功將 `_tasksAddViewVisible` 設為 `true`
+
 ```kotlin
 private fun setFilter(
     @StringRes filteringLabelString: Int, @StringRes noTasksLabelString: Int,
@@ -801,11 +834,13 @@ fun setupViewModel() {
 ```
 
 通過這個方設定，我們可以移除此行：
+
 ```kotlin
 val tasksViewModel = TasksViewModel(ApplicationProvider.getApplicationContext())
 ```
 
 所以變成以下：
+
 ```kotlin
 @Config(sdk = [30]) // Remove when Robolectric supports SDK 31
 @RunWith(AndroidJUnit4::class)
@@ -841,20 +876,21 @@ class TasksViewModelTest {
 ```
 
 ## 架構與測試
-><br>
+
+> <br>
 > 一個好的測試環境通常需要分工清晰，如此一來每次都可以針對某個特點進行測試。
 > 而分工的清晰則是由專案的架構決定。 所以，一個好的架構才能寫出好的測試。
-><br>
-
+> <br>
 
 接下來，我們會進行以下的測試：
+
 - **repository** 的 Unit Test
 - **viewModel** 的 Unit 與 Integration Test
 - **fragments 與 viewModel** 的 Integration Test
 - **navigation** 的 Integration Test
 
-
 ## Repository
+
 這部分我們要針對 **DefaultTasksRepository** 進行測試：
 
 ```kotlin
@@ -870,15 +906,16 @@ class DefaultTasksRepository private constructor(application: Application) {
 由於我們未必可以隨時取得 **Remote** 資料，也可能尚未有 **Local** 資料，所以為了減少這種不定性。我們需要建立一個 **FakeDataSource** 來充當測試的資料來源 。這也是所謂的 **Test Double**。
 
 ### Test Double
+
 **Test Double** 有以下的類別：
 
-|Test Double|Description|
-|:--|:--|
-|**Fake**|A test double that has a **"working" implementation** of the class, but it's implemented in a way that makes it good for tests but unsuitable for production.|
-|**Mock**|A test double that **tracks which of its methods were called**. It then *passes or fails a test depending on whether it's methods were called correctly*.|
-|**Stub**|A test double that **includes no logic and only returns what you program it to return**. A StubTaskRepository **could be programmed to return certain combinations of tasks from getTasks** for example.|
-|**Dummy**|A test double that is **passed around but not used**, such as if you *just need to provide it as a parameter*. If you had a NoOpTaskRepository, it would just implement the TaskRepository with no code in any of the methods.|
-|**Spy**|A test double which also **keeps tracks of some additional information**; for example, if you made a SpyTaskRepository, it might *keep track of the number of times the addTask method was called*.|
+| Test Double | Description                                                                                                                                                                                                                    |
+| :---------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Fake**    | A test double that has a **"working" implementation** of the class, but it's implemented in a way that makes it good for tests but unsuitable for production.                                                                  |
+| **Mock**    | A test double that **tracks which of its methods were called**. It then _passes or fails a test depending on whether it's methods were called correctly_.                                                                      |
+| **Stub**    | A test double that **includes no logic and only returns what you program it to return**. A StubTaskRepository **could be programmed to return certain combinations of tasks from getTasks** for example.                       |
+| **Dummy**   | A test double that is **passed around but not used**, such as if you _just need to provide it as a parameter_. If you had a NoOpTaskRepository, it would just implement the TaskRepository with no code in any of the methods. |
+| **Spy**     | A test double which also **keeps tracks of some additional information**; for example, if you made a SpyTaskRepository, it might _keep track of the number of times the addTask method was called_.                            |
 
 更多的資訊可以看看這個 [Blog](https://testing.googleblog.com/2013/07/testing-on-toilet-know-your-test-doubles.html)
 
@@ -953,7 +990,9 @@ class FakeDataSource(var tasks: MutableList<Task>? = mutableListOf()) : TasksDat
 ```
 
 ### Dependency Injection
+
 雖然定義了 **FakeDataSource**，但我們目前無法更換 `tasksRemoteDataSource`：
+
 ```kotlin
 class DefaultTasksRepository private constructor(application: Application) {
   companion object {
@@ -1003,6 +1042,7 @@ companion object {
 現在可以進行 DI 了，我們可以進行測試了。
 
 #### 導入 FakeDataSource
+
 首先，我們需要建立一個 **DefaultTasksRepositoryTest** ：
 
 ```kotlin
@@ -1055,6 +1095,7 @@ fun getTasks_requestsAllTasksFromRemoteDataSource() {
 但這會出現問題，由於 `getTasks` 本身是 **suspend** 方法，所以要嘛調用他的方法也是 **suspend** 否則就需要通過 **Coroutine** 進行調用。
 
 ##### Coroutine
+
 為了要加上 **Coroutine** 來測試，我們需要 `testImplementation` **kotlinx-coroutines-test**：
 
 ```groovy
@@ -1092,6 +1133,7 @@ fun getTasks_requestsAllTasksFromRemoteDataSource() = runTest {
 ```
 
 ##### 創建 TasksRepository 介面
+
 想要測試 DefaultTasksRepository 我們就要先創建一個 DefaultTasksRepository 介面。 我們右鍵點選 DefaultTasksRepository 類別名稱，然後點選 Refactor \> Extract Interface \> Extract to Separate File 並更改名稱為 TasksRepository 且只點選 public 方法，不包含 companion。
 
 ```kotlin
@@ -1137,6 +1179,7 @@ class DefaultTasksRepository(
 ```
 
 ##### 創建 FakeRepository
+
 在 test \> data.source 中創建 FakeRepository.kt 並讓它實作 TasksRepository：
 
 ```kotlin
@@ -1199,6 +1242,7 @@ class FakeTestRepository: TasksRepository {
     }
 }
 ```
+
 接下來我們就要準備資料：
 
 ```kotlin
@@ -1241,8 +1285,8 @@ override fun observeTasks(): LiveData<Result<List<Task>>>  {
 
 如果這個方法是 `@Test` 那就可以使用 `runTest` 或 `runBlockingTest` 來得到固定的行為。 但 `runBlocking` 會與現實更貼切。
 
-
 ##### 新增 addTasks
+
 一般來說，如果我們要新增 Tasks，repository 裡面最好就是有一些資料，這可以通過調用多次的 `saveTask`。 但為了簡化，我們直接通過新增方法， `addTasks`， 來更新 `tasksServiceData` ：
 
 ```kotlin
@@ -1255,6 +1299,7 @@ fun addTasks(vararg tasks: Task) {
 ```
 
 ##### 更新 TasksViewModel 建構子
+
 想要測試就先將 **TasksViewModel** 建構子更新 DI：
 
 ```kotlin
@@ -1396,15 +1441,15 @@ class TaskDetailViewModelFactory (
 ```
 
 ## Integration Test
->
->
->Integration tests 主要目的是將多個類別一同測試來確保它們之間互動正常。
->測試內容可以是在 **test** 或 **androidTest** 中
-><br>
+
+> Integration tests 主要目的是將多個類別一同測試來確保它們之間互動正常。
+> 測試內容可以是在 **test** 或 **androidTest** 中
+> <br>
 
 我們此次的目的是測試 Fragment 與 ViewModel。
 
 ### androidTest Dependency
+
 由於我們依然需要使用到 **Coroutine** 與 **JUnit**， 所以我們除了原本的 `testImplementation` 外，現在外加 `androidTestImplementation`：
 
 ```groovy
@@ -1420,12 +1465,12 @@ debugImplementation "androidx.fragment:fragment-testing:$fragmentVersion"
 
 他們的作用如下：
 
-|dependency|function|
-|:--|:--|
-|`androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"`   |  The coroutines testing library |
-| `androidTestImplementation "junit:junit:$junitVersion"`  | JUnit, which is necessary for writing basic test statements.  |
-|`implementation "androidx.test:core:$androidXTestCoreVersion"`   | Core AndroidX test library  |
-| `implementation "androidx.fragment:fragment-testing:$fragmentVersion"`  |  AndroidX test library for creating fragments in tests and changing their state. |
+| dependency                                                                                     | function                                                                        |
+| :--------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------ |
+| `androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"` | The coroutines testing library                                                  |
+| `androidTestImplementation "junit:junit:$junitVersion"`                                        | JUnit, which is necessary for writing basic test statements.                    |
+| `implementation "androidx.test:core:$androidXTestCoreVersion"`                                 | Core AndroidX test library                                                      |
+| `implementation "androidx.fragment:fragment-testing:$fragmentVersion"`                         | AndroidX test library for creating fragments in tests and changing their state. |
 
 ### TaskDetailFragmentTest
 
@@ -1447,13 +1492,14 @@ class TaskDetailFragmentTest {}
 
 除了 `MediumTest` 它還有以下大小：
 
-|Group|Usage|
-|:--:|:--|
-|[@SmallTest](https://developer.android.com/reference/androidx/test/filters/SmallTest)   | Unit Test  |
-| [@MediumTest](https://developer.android.com/reference/androidx/test/filters/MediumTest)  | Marks the test as a "medium run-time" integration test  |
-| [@LargeTest](https://developer.android.com/reference/androidx/test/filters/LargeTest)  | end-to-end tests  |
+|                                          Group                                          | Usage                                                  |
+| :-------------------------------------------------------------------------------------: | :----------------------------------------------------- |
+|  [@SmallTest](https://developer.android.com/reference/androidx/test/filters/SmallTest)  | Unit Test                                              |
+| [@MediumTest](https://developer.android.com/reference/androidx/test/filters/MediumTest) | Marks the test as a "medium run-time" integration test |
+|  [@LargeTest](https://developer.android.com/reference/androidx/test/filters/LargeTest)  | end-to-end tests                                       |
 
 #### FragmentScenario 來展現 Fragment
+
 這裡我們需要使用到 AndroidX Test 中的 [FragmentScenario](https://developer.android.com/reference/kotlin/androidx/fragment/app/testing/FragmentScenario.html) 類別。 通過 FragmentScenario，我們可以將 fragment 包裹起來並提供我們操控 Fragment 生命週期的能力。
 
 我們可以通過 `launchFragmentInContainer` 來得到 FragmentScenario：
@@ -1534,6 +1580,7 @@ fun start(taskId: String) {
 為此，我們需要使用 Service Locator Pattern 。
 
 #### Service Locator
+
 Service Locator 是一個 Singleton 並使用 DI 傳入所需類別中。 通過這方法，我們可以統一更新 Repository。
 
 接下來我們就設計一個 ServiceLocator 類別：
@@ -1552,12 +1599,12 @@ object ServiceLocator {
 
 接下來， ServiceLocator 需要知道以下行為：
 
-|Method|Purpose|
-|:--|:--|
-|`provideTasksRepository`   | 提供新的或已存在的 Repository (需要使用 `synchronize(this)` 來避免 race condition)  |
-|`createTasksRepository`   | 創建新的 Repository，這裡指的是 TasksRepository  |
-|`createTaskLocalDataSource`   | 通過 `createDataBase` 創建新的 Local Data Source  |
-|`createDataBase`   |創建新的 database   |
+| Method                      | Purpose                                                                            |
+| :-------------------------- | :--------------------------------------------------------------------------------- |
+| `provideTasksRepository`    | 提供新的或已存在的 Repository (需要使用 `synchronize(this)` 來避免 race condition) |
+| `createTasksRepository`     | 創建新的 Repository，這裡指的是 TasksRepository                                    |
+| `createTaskLocalDataSource` | 通過 `createDataBase` 創建新的 Local Data Source                                   |
+| `createDataBase`            | 創建新的 database                                                                  |
 
 以下是他們的實作：
 
@@ -1625,11 +1672,10 @@ fun resetRepository() {
 
 這是為了讓我們可以重新設定 ServiceLocator 的狀態： `taskRepository`。
 
-><br>
+> <br>
 >
->這也就是使用 Singleton 的缺點。 除了在測試完之後要重設之外，還不能進行平行測試。
-><br>
-
+> 這也就是使用 Singleton 的缺點。 除了在測試完之後要重設之外，還不能進行平行測試。
+> <br>
 
 接下來我們需要將 **ServiceLocator** 放在 Todoapplication 中，這樣在 App 啟動之後就可以設定好：
 
@@ -1647,6 +1693,7 @@ class TodoApplication : Application() {
 ```
 
 接下來我們要先將 DefaultTasksRepository 中創建 Database 的部分去掉：
+
 ```kotlin
 // 移除
 /* companion object {
@@ -1705,11 +1752,14 @@ class FakeAndroidTestRepository : TasksRepository {
 }
 ```
 
-><br>
+> <br>
 >
->但其實我們是可以分享 test 與 androidTest 之間的檔案的。 我們需要在 Gradle 中更改：
+> 但其實我們是可以分享 test 與 androidTest 之間的檔案的。 我們需要在 Gradle 中更改：
+>
 > ```groovy
 >   android {
+> ```
+
         sourceSets {
             String sharedTestDir = 'src/sharedTest/java'
             test {
@@ -1720,9 +1770,11 @@ class FakeAndroidTestRepository : TasksRepository {
             }
         }
     }
+
 > ```
 > 這樣就可以使用 `sharedTestDir` 來存放共享檔案。
-><br>
+> <br>
+> ```
 
 接下來就實作其中方法，我們先看看 FakeAndroidRepository 與 FakeTestRepository 的實作差別：
 
@@ -1778,7 +1830,7 @@ fun addTasks(vararg tasks: Task) {
 
 ```
 
-接著就是 FakeAndroidRepository  完整的實作：
+接著就是 FakeAndroidRepository 完整的實作：
 
 ```kotlin
 class FakeAndroidTestRepository : TasksRepository {
@@ -1895,6 +1947,7 @@ class FakeAndroidTestRepository : TasksRepository {
 ```
 
 ##### 更新 TaskDetailFragmentTest (ServiceLocator)
+
 現在我們更新 TaskDetailFragmentTest，新增 ServiceLocator 的測試：
 
 ```kotlin
@@ -1947,8 +2000,8 @@ dependencies {
 ```
 
 #### 關掉 Animation
-由於 Espresso 是在實體機上運作的，所以我們會遇到動畫導致的 delay。 因此，當我們通過 Espresso 檢查畫面時，在進行動畫的 View 就會被無視，導致錯誤的出現。 也因為如此，我們需要將 Animation 給關掉。
 
+由於 Espresso 是在實體機上運作的，所以我們會遇到動畫導致的 delay。 因此，當我們通過 Espresso 檢查畫面時，在進行動畫的 View 就會被無視，導致錯誤的出現。 也因為如此，我們需要將 Animation 給關掉。
 
 #### 基本語法
 
@@ -2067,7 +2120,6 @@ fun completedTaskDetails_DisplayedInUi() = runTest {
 
 接下來我們要進行導覽的測試，這時我們就需要用到 [Mockito](https://site.mockito.org/) 還有一個叫做 **mock** 的 Test Double 。 但是， Mockito 除了能做 mock 還可以使用 **stubs** 與 **spies**。
 
-
 以下是 TasksFragment 中進行導向的源碼：
 
 ```kotlin
@@ -2102,7 +2154,9 @@ androidTestImplementation "com.linkedin.dexmaker:dexmaker-mockito:$dexMakerVersi
 androidTestImplementation "androidx.test.espresso:espresso-contrib:$espressoVersion"
 
 ```
+
 #### 創建 TasksFragmentTest
+
 > 在 TasksFragment 名稱點選右鍵 \> Generate \> Test \> 選擇 androidTest
 
 再來進行與 Instrumental Unit Test 一樣的設定：
@@ -2203,245 +2257,7 @@ fun clickAddTaskButton_navigateToAddEditFragment() {
 }
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## ViewModelScope
-
-
-# Unit Test
-## Repository
-Repository 有幾樣項目可以測試：
-- DAO 的調用
-- LocalDataSource 的調用 (其實跟 DAO 差不多)
-- FakeRepository 的測試
-
-### Dao 測試
-#### 設定 Before After
-```kotlin
-@RunWith(AndroidJUnit4::class)
-@SmallTest
-class TasksDaoTest {
-    private lateinit var database: TodoDatabase
-
-    @Before
-    fun initDb() {
-        database = Room.inMemoryDatabaseBuilder(
-            ApplicationProvider.getApplicationContext(),
-            TodoDatabase::class.java
-        ).build()
-    }
-
-    @After
-    fun closeDb() = database.close()
-}
-```
-
-#### insert 測試
-
-```kotlin
-@OptIn(ExperimentalCoroutinesApi::class)
-@Test
-fun insertTaskAndGetById() = runTest {
-    // GIVEN - insert a task
-    val task = Task("title", "description")
-    database.taskDao().insertTask(task)
-
-    // WHEN - Get the task by id from the database
-    val loaded = database.taskDao().getTaskById(task.id)
-
-    // THEN - The loaded data contains the expected values
-    assertThat(loaded as Task, CoreMatchers.notNullValue())
-    assertThat(loaded.id, `is` (task.id))
-    assertThat(loaded.title, `is`(task.title))
-    assertThat(loaded.description, `is`(task.description))
-    assertThat(loaded.isCompleted, `is`(task.isCompleted))
-}
-```
-
-
-
-
-
-### FakeRepository 測試
-在建造 Unit Test 之前，我們先弄一個 TasksRepository 的 Ext 出來：
-
-```kotlin
-/**
- * A blocking version of TasksRepository.saveTask to minimize the number of times we have to
- * explicitly add <code>runBlocking { ... }</code> in our tests
- */
-fun TasksRepository.saveTaskBlocking(task: Task) = runBlocking {
-    this@saveTaskBlocking.saveTask(task)
-}
-
-fun TasksRepository.getTasksBlocking(forceUpdate: Boolean) = runBlocking {
-    this@getTasksBlocking.getTasks(forceUpdate)
-}
-
-fun TasksRepository.deleteAllTasksBlocking() = runBlocking {
-    this@deleteAllTasksBlocking.deleteAllTasks()
-}
-```
-
-
-### FakeRepository
-
-為了進行 Repository 的測試，這裡建造了一個 **FakeRepository**。 其實跟之前的 **FakeTasksRemoteDataSource** 差不多：
-
-```kotlin
-/**
- * Implementation of a remote data source with static access to the data for easy testing.
- */
-class FakeRepository : TasksRepository {
-
-    var tasksServiceData: LinkedHashMap<String, Task> = LinkedHashMap()
-
-    private var shouldReturnError = false
-
-    private val observableTasks = MutableLiveData<Result<List<Task>>>()
-
-    fun setReturnError(value: Boolean) {
-        shouldReturnError = value
-    }
-
-    override suspend fun refreshTasks() {
-        getTasks().collect {
-            observableTasks.value = it
-        }
-    }
-
-    override suspend fun refreshTask(taskId: String) {
-        refreshTasks()
-    }
-
-    override fun observeTasks(): LiveData<Result<List<Task>>> {
-        runBlocking { refreshTasks() }
-        return observableTasks
-    }
-
-    override fun observeTask(taskId: String): LiveData<Result<Task>> {
-        runBlocking { refreshTasks() }
-        return observableTasks.map { tasks ->
-            when (tasks) {
-                is Result.Loading -> Result.Loading
-                is Result.Error -> Result.Error(tasks.exception)
-                is Result.Success -> {
-                    val task = tasks.data.firstOrNull() { it.id == taskId }
-                        ?: return@map Result.Error(Exception("Not found"))
-                    Result.Success(task)
-                }
-                else -> {
-                    Result.Error(Exception("ELSE OCCURS"))
-                }
-            }
-        }
-    }
-
-    override suspend fun getTask(taskId: String, forceUpdate: Boolean): Result<Task> {
-        if (shouldReturnError) {
-            return Result.Error(Exception("Test exception"))
-        }
-        tasksServiceData[taskId]?.let {
-            return Result.Success(it)
-        }
-        return Result.Error(Exception("Could not find task"))
-    }
-
-    override suspend fun getTasks(forceUpdate: Boolean): Result<List<Task>> {
-        if (shouldReturnError) {
-            return Result.Error(Exception("Test exception"))
-        }
-        return Result.Success(tasksServiceData.values.toList())
-    }
-
-    override suspend fun getTasks(): Flow<Result<List<Task>>> = flow {
-        if (shouldReturnError) {
-            Result.Error(Exception("Test exception"))
-        } else {
-            Result.Success(tasksServiceData.values.toList())
-        }
-    }
-
-    override suspend fun saveTask(task: Task) {
-        tasksServiceData[task.id] = task
-    }
-
-    override suspend fun completeTask(task: Task) {
-        val completedTask = Task(task.title, task.description, true, task.id)
-        tasksServiceData[task.id] = completedTask
-    }
-
-    override suspend fun completeTask(taskId: String) {
-        // Not required for the remote data source.
-        throw NotImplementedError()
-    }
-
-    override suspend fun activateTask(task: Task) {
-        val activeTask = Task(task.title, task.description, false, task.id)
-        tasksServiceData[task.id] = activeTask
-    }
-
-    override suspend fun activateTask(taskId: String) {
-        throw NotImplementedError()
-    }
-
-    override suspend fun clearCompletedTasks() {
-        tasksServiceData = tasksServiceData.filterValues {
-            !it.isCompleted
-        } as LinkedHashMap<String, Task>
-    }
-
-    override suspend fun deleteTask(taskId: String) {
-        tasksServiceData.remove(taskId)
-        refreshTasks()
-    }
-
-    override suspend fun deleteAllTasks() {
-        tasksServiceData.clear()
-        refreshTasks()
-    }
-
-    @VisibleForTesting
-    fun addTasks(vararg tasks: Task) {
-        for (task in tasks) {
-            tasksServiceData[task.id] = task
-        }
-        runBlocking { refreshTasks() }
-    }
-}
-```
-
 # 錯誤訊息
-
-## No tests found for given includes
-
-```
-No tests found for given includes: [com.demo.mocktodoapplication.data.source.local.TasksDaoTest.test](--tests filter)
-```
-
-這個錯誤主要是因為我們使用了 `RunWith(AndroidJUnit4::class)`。
-
-
-
 
 ## Database_Impl not Found
 
@@ -2455,7 +2271,5 @@ implementation("androidx.room:room-runtime:$roomVersion")
 ```
 
 另外，一定要更新 `implementation "androidx.core:core-ktx:1.12.0"`
-
-
 
 <br><br><br><br><br><br><br><br><br><br>
