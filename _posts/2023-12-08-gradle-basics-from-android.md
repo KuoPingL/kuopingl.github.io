@@ -1738,6 +1738,7 @@ allprojects {
     }
 }
 ```
+
 </details>
 
 ### 指定遠端 Repositories
@@ -2932,11 +2933,74 @@ open fun pluginManagement(@Suppress("unused_parameter") block: PluginManagementS
 | `resolutionStrategy` | 定義 [plugin resolution rules](#pluginresolutionstrategy)                                                       |
 | `plugins`            | 設定 [plugins](#plugins)                                                                                        |
 
+# Version Catalog : TOML
+
+我們在 [version catalog](#version-catalog) 中有提到如何在 `build.gradle` 中定義我們的 version catalog。 但你知道其實我們也可以通過別的檔案來定義嗎？
+
+[**TOML**](https://toml.io/en/) aka Tom's Obvious Minimal Language， 他是一種使用簡單明瞭的寫法來創建我們所需要的 Hash Table。
+
+以下是其中一個範例 :
+
+```
+# This is a TOML document
+
+title = "TOML Example"
+
+[owner]
+name = "Tom Preston-Werner"
+dob = 1979-05-27T07:32:00-08:00
+
+[database]
+enabled = true
+ports = [ 8000, 8001, 8002 ]
+data = [ ["delta", "phi"], [3.14] ]
+temp_targets = { cpu = 79.5, case = 72.0 }
+
+[servers]
+
+[servers.alpha]
+ip = "10.0.0.1"
+role = "frontend"
+
+[servers.beta]
+ip = "10.0.0.2"
+role = "backend"
+```
+
+當然，我不會在這說明如何定義參數，這我們可以直接參考 [Android 官方的寫法](https://github.com/android/architecture-samples/blob/main/gradle/libs.versions.toml)。
+
+我想要說的是要如何在專案中使用 TOML。
+
+我們只需要在 `root/gradle` 中創建 `lib.versions.toml` 並定義我們所需要的 versions、 dependencies 和 plugins。之後就可以在 `build.gradle` 或 `settings.gradle` 中調用。
+
+```groovy
+libs.servers.beta.ip // 便可取得上方的 ip = "10.0.0.2"
+```
+
+> 你可能會在想 <code>lib.versions.toml</code> 是什麼時候被 import 的呢？
+
+這其實是因為 [Gradle 自動就會去讀取](https://docs.gradle.org/current/userguide/platforms.html#sub:conventional-dependencies-toml) 這個名稱的 TOML 檔案。
+
+如果我們改了名字，那我們就需要 [手動引入](https://discuss.gradle.org/t/migrating-to-gradle-catalogs-from-buildsrc-in-android-studio-unknown-property-libraries/43729)。
+
+```groovy
+dependencyResolutionManagement {
+    versionCatalogs {
+        libs {
+            from(files("../gradle/someother.toml"))
+        }
+    }
+}
+```
+
+如果想知道 `lib.versions.toml` 被讀取後會發生什麼事，可以從這 [回答](https://stackoverflow.com/a/76170383/18597115) 開始。
+
 # References
 
 ## BuildType
 
 1. [Advanced Android Flavors](https://proandroiddev.com/advanced-android-flavors-part-1-building-white-label-apps-on-android-ade16af23bcf)
+
 2. [codelab: Create different versions of your app using build variants](https://developer.android.com/codelabs/build-variants#0)
 
 ## Task
@@ -2974,3 +3038,7 @@ open fun pluginManagement(@Suppress("unused_parameter") block: PluginManagementS
 3. [Making incremental KAPT work (Speed Up your Kotlin projects!)](https://medium.com/@daniel_novak/making-incremental-kapt-work-speed-up-your-kotlin-projects-539db1a771cf)
 4. [简单几招提速 Kotlin Kapt 编译](https://droidyue.com/blog/2019/08/18/faster-kapt/)
 5. [Incremental Annotation Processing](https://docs.gradle.org/current/userguide/java_plugin.html#sec:incremental_annotation_processing)
+
+## TOML
+
+1. [TOML: The Future of Gradle Dependency Declarations](https://medium.com/@dawinderapps/toml-the-future-of-gradle-dependency-declarations-14b72676c71f)
