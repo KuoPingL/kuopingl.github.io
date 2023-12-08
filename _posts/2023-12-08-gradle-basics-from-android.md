@@ -1689,7 +1689,7 @@ repositories {
 
 一般而言，你會看到多個地方使用到 `repositories` block。
 
-<<details markdown=1>
+<details markdown=1>
 
 <summary  markdown='span'> 
 在新版中， Gradle 會在 <code>settings.gradle(Project)</code> 中的 <a href="https://docs.gradle.org/current/dsl/org.gradle.plugin.management.PluginManagementSpec.html#org.gradle.plugin.management.PluginManagementSpec"><code>pluginManagement</code></a> 與 <a href="https://docs.gradle.org/current/userguide/declaring_repositories.html#sub:centralized-repository-declaration"><code>dependencyResolutionManagement</code></a> 設定 repositories :
@@ -1717,7 +1717,7 @@ dependencyResolutionManagement {
 <br>
 </details>
 
-<<details markdown=1>
+<details markdown=1>
 
 <summary  markdown='span'> 
 在舊的版本中， Gradle 會在 <code>build.gradle(Project)</code> 中設定 repositories :
@@ -1738,6 +1738,7 @@ allprojects {
     }
 }
 ```
+</details>
 
 ### 指定遠端 Repositories
 
@@ -2160,7 +2161,7 @@ dependencies {
 
 <center>
     <a href = "https://docs.gradle.org/current/userguide/declaring_dependencies.html#sub:file_dependencies"><img src = "https://docs.gradle.org/current/userguide/img/dependency-management-file-dependencies.png"/></a>
-</ceneter>
+</center>
 
 以下是官方範例 :
 
@@ -2805,7 +2806,7 @@ kapt.incremental.apt=true   // 讓使用 kapt 升級的 Library 像是 Room 不�
 
 我們在 [Gradle Build 生命週期](#build-lifecycle) 中有提到 Gradle build 時執行的順序。若想要手動驗證，我們只需要在他們裡面寫 `println {msg}` 或 Kotlin `println({msg})` 即可。
 
-<<details markdown=1>
+<details markdown=1>
 
 <summary  markdown='span'> 這是我的測試結果 </summary>
 
